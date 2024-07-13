@@ -51,7 +51,12 @@ class DndApi {
 	static async deleteUser(username) {
 		let res = await this.request(`users/${username}`, {}, "delete");
 		return res;
-	}
+  }
+  
+  static async getSearchSlugs() {
+		let res = await this.request("/search", {}, "get");
+		return res;
+  }
 }
 
 
