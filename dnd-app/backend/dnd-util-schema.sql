@@ -34,3 +34,4 @@ CREATE TABLE
     FOREIGN KEY (character_id) REFERENCES character_sheet (id) ON DELETE CASCADE,
     FOREIGN KEY (slug_id) REFERENCES search_slugs (id) ON DELETE CASCADE
   );
+
