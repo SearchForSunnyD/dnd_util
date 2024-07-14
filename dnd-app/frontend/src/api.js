@@ -1,4 +1,5 @@
 import axios from "axios";
+import { LinkedList } from "./tools";
 
 const BASE_URL = "http://localhost:3001";
 
@@ -51,16 +52,34 @@ class DndApi {
 	static async deleteUser(username) {
 		let res = await this.request(`users/${username}`, {}, "delete");
 		return res;
-  }
-  
-  static async getSearchSlugs() {
-		let res = await this.request("/search", {}, "get");
-		return res;
-  }
-}
+	}
 
+	static async getSearchSlugs() {
+		let res = await this.request("search", {}, "get");
+		return res;
+	}
+
+	static async getFilteredSearchSlugs(str) {
+		let res = await this.request("search/filter", { str }, "get");
+		return res.results;
+	}
+	static async getPaginatedSearchSlugs(str, chunkSize = 10) {
+		let res = await this.request("search/search", { str }, "get");
+
+		const list = new LinkedList();
+
+		for (let i = 0; i < res.results.length; i += chunkSize) {
+			const chunk = res.results.slice(i, i + chunkSize);
+			list.push(chunk);
+		}
+
+		return list;
+	}
+}
 
 DndApi.token =
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
 	"SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
 	"FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+export default DndApi;

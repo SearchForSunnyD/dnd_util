@@ -24,7 +24,7 @@ app.use(authenticateJWT);
 
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
-app.use("/character", usersRoutes);
+app.use("/character", characterRoutes);
 app.use("/search", searchRoutes);
 
 /** Handle 404 errors -- this matches everything */

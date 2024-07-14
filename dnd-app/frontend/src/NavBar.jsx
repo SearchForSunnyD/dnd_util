@@ -8,6 +8,7 @@ import {
 	Nav,
 	Navbar,
 } from "reactstrap";
+import { SuggestionDropdown } from "./SuggestionDropdown";
 
 import "./assets/styles/NavBar.css";
 
@@ -20,7 +21,8 @@ export function NavBar() {
 			<NavLink exact to="/" className="navbar-brand">
 				<img src="/logo.png" alt="" />
 			</NavLink>
-			<Nav className="ml-auto" navbar>
+			<SuggestionDropdown />
+			<Nav className="mr-auto" fluid navbar>
 				<Dropdown
 					isOpen={dropdownOpen}
 					toggle={toggle}
