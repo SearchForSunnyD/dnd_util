@@ -1,7 +1,10 @@
-import { SuggestionDropdown } from "./SuggestionDropdown";
+import { SearchCard } from "./SearchCard";
 
 export function TestFile() {
-	return (
-		<SuggestionDropdown/>
-	);
+	const data = {
+		name: "A-mi-kuk",
+		slug: "a-mi-kuk",
+		type: "monsters",
+	};
+	return <SearchCard data={data} />;
 }

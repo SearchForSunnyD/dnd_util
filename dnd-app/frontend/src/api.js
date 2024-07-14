@@ -22,6 +22,20 @@ class DndApi {
 		}
 	}
 
+	static async externalRequest(url, endpoint, data, method = "get") {
+		console.debug("API Call:", url, endpoint, data, method);
+
+		const externalUrl = `${url}/${endpoint}/${data}`;
+
+		try {
+			return await axios.get(externalUrl);
+		} catch (err) {
+			console.error("API Error:", err);
+			let message = err.response.data.error.message;
+			throw Array.isArray(message) ? message : [message];
+		}
+	}
+
 	static async registerUser(data) {
 		console.log("register");
 		let res = await this.request("auth/register", { ...data }, "post");
@@ -63,6 +77,7 @@ class DndApi {
 		let res = await this.request("search/filter", { str }, "get");
 		return res.results;
 	}
+
 	static async getPaginatedSearchSlugs(str, chunkSize = 10) {
 		let res = await this.request("search/search", { str }, "get");
 
@@ -74,6 +89,12 @@ class DndApi {
 		}
 
 		return list;
+	}
+
+	static async getFromExternal({ type, slug }) {
+		const url = "https://api.open5e.com/v1";
+		let res = await this.externalRequest(url, type, slug);
+		return res.data
 	}
 }
 

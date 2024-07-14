@@ -1,0 +1,24 @@
+.search-card{
+  flex-direction: row;
+  width: 90vw;
+  padding: 5px;
+  text-align: left;
+  font-size: large;
+}
+
+.search-card img{
+  border-radius: 10px;
+}
+
+.card-body{
+  width: 100%;
+  padding: 0 1vh;
+}
+
+.card-subtitle{
+  font-size: small;
+}
+
+.text-truncate{
+  width: 80%;
+}

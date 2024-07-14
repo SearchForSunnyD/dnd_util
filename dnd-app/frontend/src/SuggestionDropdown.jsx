@@ -29,7 +29,6 @@ export function SuggestionDropdown() {
 				setFilteredResults([]);
 				setDropdownOpen(false);
 			}
-			console.log(await DndApi.getPaginatedSearchSlugs("as"));
 		};
 
 		getFiltered();
