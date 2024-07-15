@@ -12,17 +12,14 @@ import {
 	ListGroupItem,
 	Row,
 } from "reactstrap";
+import { getDescription } from "./tools";
 
-import("./assets/styles/Monsters.css");
+import("./assets/styles/Details.css");
 
-export function Monster({data}) {
-	function getDescription(data) {
-		return data.desc || data.description || null;
-	}
-
+export function Monster({ data }) {
 	return (
 		<Container>
-			<Row className="my-4">
+			<Row>
 				<CardImg src="./icons/monsters.png" />
 				<Col>
 					<Card className="info">
