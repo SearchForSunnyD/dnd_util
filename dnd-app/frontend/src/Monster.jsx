@@ -11,6 +11,7 @@ import {
 	ListGroup,
 	ListGroupItem,
 	Row,
+	Badge,
 } from "reactstrap";
 import { getDescription } from "./tools";
 
@@ -79,23 +80,6 @@ export function Monster({ data }) {
 										<strong>Challenge Rating:</strong>{" "}
 										{data.challenge_rating}
 									</CardText>
-								</Row>
-								<hr />
-								<Row>
-									<Col>
-										<CardText>
-											<strong>Page Number:</strong>{" "}
-											{data.page_no}
-										</CardText>
-									</Col>
-									<Col>
-										<CardText>
-											<strong>Document:</strong>{" "}
-											<a href={data.document__url}>
-												{data.document__title}
-											</a>
-										</CardText>
-									</Col>
 								</Row>
 								<hr />
 								<h5 className="mt-4">Actions</h5>
@@ -339,6 +323,14 @@ export function Monster({ data }) {
 										)
 									)}
 								</Row>
+								<CardText className="mt-3">
+									<strong>Source:</strong>{" "}
+									<Badge pill color="warning">
+										<a href={data.document__url}>
+											{data.document__title}
+										</a>
+									</Badge>
+								</CardText>
 							</CardBody>
 						</Col>
 					</Card>
