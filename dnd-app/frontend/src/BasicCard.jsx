@@ -12,11 +12,11 @@ import {
 
 import("./assets/styles/Details.css");
 
-export function Planes({data}) {
+export function BasicCard({ data, img_url }) {
 	return (
 		<Container>
 			<Row>
-				<CardImg src="./icons/planes.png" />
+				<CardImg src={`./icons/${img_url}.png`} />
 				<Col>
 					<Card className="info">
 						<CardBody>
