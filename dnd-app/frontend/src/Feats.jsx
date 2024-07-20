@@ -63,7 +63,6 @@ export function Feats() {
 								>
 									{data.effects_desc.map((effect, index) => (
 										<ListGroupItem
-											className="antique"
 											key={index}
 										>
 											{effect}

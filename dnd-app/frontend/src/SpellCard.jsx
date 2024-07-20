@@ -378,17 +378,17 @@ export function SpellCard() {
 								<hr />
 								<ListGroup>
 									<h5>Additional Info</h5>
-									<ListGroupItem className="antique">
+									<ListGroupItem>
 										<strong>Material Components:</strong>{" "}
 										{(data.requires_material_components &&
 											`${data.material}`) ||
 											`None`}
 									</ListGroupItem>
-									<ListGroupItem className="antique">
+									<ListGroupItem>
 										<strong>Classes:</strong>{" "}
 										{data.dnd_class}
 									</ListGroupItem>
-									<ListGroupItem className="antique">
+									<ListGroupItem>
 										<strong>Cast as ritual: </strong>
 										{data.can_be_cast_as_ritual
 											? "True"

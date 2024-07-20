@@ -23,6 +23,10 @@
 		0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
+.bisque li{
+background-color: antiquewhite;
+}
+
 .antique{
   background-color: antiquewhite;
 }

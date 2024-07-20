@@ -160,28 +160,28 @@ export function Monster() {
 										<Col>
 											<h5>Immunities/Resistances</h5>
 											<ListGroup>
-												<ListGroupItem className="text-capitalize antique">
+												<ListGroupItem className="text-capitalize">
 													<strong>
 														Damage Vulnerabilities:
 													</strong>{" "}
 													{data.damage_vulnerabilities ||
 														"None"}
 												</ListGroupItem>
-												<ListGroupItem className="text-capitalize antique">
+												<ListGroupItem className="text-capitalize">
 													<strong>
 														Damage Resistances:
 													</strong>{" "}
 													{data.damage_resistances ||
 														"None"}
 												</ListGroupItem>
-												<ListGroupItem className="text-capitalize antique">
+												<ListGroupItem className="text-capitalize">
 													<strong>
 														Damage Immunities:
 													</strong>{" "}
 													{data.damage_immunities ||
 														"None"}
 												</ListGroupItem>
-												<ListGroupItem className="text-capitalize antique">
+												<ListGroupItem className="text-capitalize">
 													<strong>
 														Condition Immunities:
 													</strong>{" "}
@@ -193,7 +193,7 @@ export function Monster() {
 										<Col>
 											<h5>Other Actions</h5>
 											<ListGroup>
-												<ListGroupItem className="antique">
+												<ListGroupItem>
 													<strong>
 														Bonus Actions:
 													</strong>{" "}
@@ -223,7 +223,7 @@ export function Monster() {
 														  )
 														: "None"}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>Reactions:</strong>{" "}
 													{data.reactions
 														? Object.keys(
@@ -259,17 +259,17 @@ export function Monster() {
 										<Col>
 											<h5>Abilities</h5>
 											<ListGroup>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>Strength:</strong>{" "}
 													{data.strength} (
 													{getScore(data.strength)})
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>Dexterity:</strong>{" "}
 													{data.dexterity} (
 													{getScore(data.dexterity)})
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Constitution:
 													</strong>{" "}
@@ -279,7 +279,7 @@ export function Monster() {
 													)}
 													)
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Intelligence:
 													</strong>{" "}
@@ -289,12 +289,12 @@ export function Monster() {
 													)}
 													)
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>Wisdom:</strong>{" "}
 													{data.wisdom} (
 													{getScore(data.wisdom)})
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>Charisma:</strong>{" "}
 													{data.charisma} (
 													{getScore(data.charisma)})
@@ -304,14 +304,14 @@ export function Monster() {
 										<Col>
 											<h5>Saves</h5>
 											<ListGroup>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Strength Save:
 													</strong>{" "}
 													{data.strength_save ||
 														getScore(data.strength)}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Dexterity Save:
 													</strong>{" "}
@@ -320,7 +320,7 @@ export function Monster() {
 															data.dexterity
 														)}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Constitution Save:
 													</strong>{" "}
@@ -329,7 +329,7 @@ export function Monster() {
 															data.constitution
 														)}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Intelligence Save:
 													</strong>{" "}
@@ -338,21 +338,21 @@ export function Monster() {
 															data.intelligence
 														)}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Wisdom Save:
 													</strong>{" "}
 													{data.wisdom_save ||
 														getScore(data.wisdom)}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Charisma Save:
 													</strong>{" "}
 													{data.charisma_save ||
 														getScore(data.charisma)}
 												</ListGroupItem>
-												<ListGroupItem className="antique">
+												<ListGroupItem >
 													<strong>
 														Passive Perception:
 													</strong>{" "}
@@ -370,7 +370,7 @@ export function Monster() {
 													(skill, index) =>
 														(
 															<ListGroupItem
-																className="text-capitalize antique"
+																className="text-capitalize"
 																key={index}
 															>
 																{skill}{" "}
@@ -405,7 +405,7 @@ export function Monster() {
 										{data.environments.map(
 											(environment, index) => (
 												<ListGroupItem
-													className="col-2 antique text-capitalize"
+													className="col-2 text-capitalize"
 													key={index}
 												>
 													{environment}
