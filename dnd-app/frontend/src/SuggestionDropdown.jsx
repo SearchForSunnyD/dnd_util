@@ -61,6 +61,9 @@ export function SuggestionDropdown() {
 
 	const handleSubmit = () => {
 		if (query) {
+			setFilteredResults([]);
+			setDropdownOpen(false);
+			setQuery('')
 			navigate(`/search-results?query=${query}`);
 		}
 	};
@@ -80,19 +83,26 @@ export function SuggestionDropdown() {
 									placeholder="Type to search..."
 									value={query}
 									onChange={(e) => setQuery(e.target.value)}
+									onKeyUp={(event) => {
+										if (event.key === "Enter") {
+											handleSubmit();
+										}
+									}}
 								/>
 								<Button onClick={handleSubmit}>Submit</Button>
 							</InputGroup>
 						</DropdownToggle>
 						<DropdownMenu className="w-100">
-							{filteredResults.length > 0 ? filteredResults.map((item) => (
-								<DropdownItem
-									key={item.slug}
-									onClick={() => handleItemClick(item)}
-								>
-									{getHighlightedText(item.name, query)}
-								</DropdownItem>
-							)) : (
+							{filteredResults.length > 0 ? (
+								filteredResults.map((item) => (
+									<DropdownItem
+										key={item.slug}
+										onClick={() => handleItemClick(item)}
+									>
+										{getHighlightedText(item.name, query)}
+									</DropdownItem>
+								))
+							) : (
 								<DropdownItem disabled>
 									Search results: None
 								</DropdownItem>
