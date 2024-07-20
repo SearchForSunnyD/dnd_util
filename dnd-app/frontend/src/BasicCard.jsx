@@ -16,7 +16,7 @@ import DndApi from "./api";
 
 import("./assets/styles/Details.css");
 
-export function BasicCard({type}) {
+export function BasicCard({ type }) {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);

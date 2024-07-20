@@ -121,8 +121,7 @@ export function Races() {
 								)}
 								{data.subraces
 									? data.subraces.map((race) => {
-											const sRace =
-												race;
+											const sRace = race;
 											return (
 												<Card
 													className="p-2 mt-1 antique"

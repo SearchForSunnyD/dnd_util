@@ -6,7 +6,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { Profile } from "./Profile";
 
 export function UserRoutes() {
-  return (
+	return (
 		<>
 			<Route path="/login/signup" element={<LoginSignup />} />
 			<Route
@@ -20,5 +20,5 @@ export function UserRoutes() {
 			<Route path="/login" element={<Navigate to="/" />} />
 			<Route path="/signup" element={<Navigate to="/" />} />
 		</>
-  );
+	);
 }

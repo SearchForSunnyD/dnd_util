@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 class Node {
 	constructor(data) {
 		this.data = data;
@@ -70,7 +71,7 @@ function stripMarkdownFromObject(obj) {
 }
 
 function getScore(num) {
-	return Math.floor((num-10)/2)
+	return Math.floor((num - 10) / 2);
 }
 
-export { LinkedList, Node, getDescription, stripMarkdownFromObject, getScore };
+export { LinkedList, Node, getDescription, getScore, stripMarkdownFromObject };

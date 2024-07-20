@@ -1,11 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { UserRoutes } from "./UserRoutes";
 import { DetailRoutes } from "./DetailRoutes";
-import { SearchResult } from "./SearchResults";
 import { Home } from "./Home";
-
-
+import { SearchResult } from "./SearchResults";
+import { UserRoutes } from "./UserRoutes";
 
 export function RouteList() {
 	return (

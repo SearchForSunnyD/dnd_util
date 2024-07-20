@@ -223,7 +223,7 @@ export function Monster() {
 														  )
 														: "None"}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>Reactions:</strong>{" "}
 													{data.reactions
 														? Object.keys(
@@ -259,17 +259,17 @@ export function Monster() {
 										<Col>
 											<h5>Abilities</h5>
 											<ListGroup>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>Strength:</strong>{" "}
 													{data.strength} (
 													{getScore(data.strength)})
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>Dexterity:</strong>{" "}
 													{data.dexterity} (
 													{getScore(data.dexterity)})
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Constitution:
 													</strong>{" "}
@@ -279,7 +279,7 @@ export function Monster() {
 													)}
 													)
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Intelligence:
 													</strong>{" "}
@@ -289,12 +289,12 @@ export function Monster() {
 													)}
 													)
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>Wisdom:</strong>{" "}
 													{data.wisdom} (
 													{getScore(data.wisdom)})
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>Charisma:</strong>{" "}
 													{data.charisma} (
 													{getScore(data.charisma)})
@@ -304,14 +304,14 @@ export function Monster() {
 										<Col>
 											<h5>Saves</h5>
 											<ListGroup>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Strength Save:
 													</strong>{" "}
 													{data.strength_save ||
 														getScore(data.strength)}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Dexterity Save:
 													</strong>{" "}
@@ -320,7 +320,7 @@ export function Monster() {
 															data.dexterity
 														)}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Constitution Save:
 													</strong>{" "}
@@ -329,7 +329,7 @@ export function Monster() {
 															data.constitution
 														)}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Intelligence Save:
 													</strong>{" "}
@@ -338,21 +338,21 @@ export function Monster() {
 															data.intelligence
 														)}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Wisdom Save:
 													</strong>{" "}
 													{data.wisdom_save ||
 														getScore(data.wisdom)}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Charisma Save:
 													</strong>{" "}
 													{data.charisma_save ||
 														getScore(data.charisma)}
 												</ListGroupItem>
-												<ListGroupItem >
+												<ListGroupItem>
 													<strong>
 														Passive Perception:
 													</strong>{" "}

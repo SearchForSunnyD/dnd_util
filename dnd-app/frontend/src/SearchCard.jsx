@@ -27,8 +27,6 @@ export function SearchCard({ data }) {
 		getInfo();
 	}, [data]);
 
-console.log(`${data.type}/${data.slug}`);
-
 	return (
 		<Container data={data.slug} className="p-4">
 			<Row>

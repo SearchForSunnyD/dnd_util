@@ -24,7 +24,9 @@ class SearchSlugs {
 
 	static async getSomePartial(str) {
 		const results = await db.query(
-			`SELECT name, slug
+			`SELECT name,
+			slug,
+			route_prefix as "type"
 			 FROM search_slugs
 			 WHERE name ILIKE $1
 			 LIMIT 20`,

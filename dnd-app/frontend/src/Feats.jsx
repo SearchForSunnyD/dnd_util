@@ -62,9 +62,7 @@ export function Feats() {
 									className="fw-lighter border"
 								>
 									{data.effects_desc.map((effect, index) => (
-										<ListGroupItem
-											key={index}
-										>
+										<ListGroupItem key={index}>
 											{effect}
 										</ListGroupItem>
 									))}

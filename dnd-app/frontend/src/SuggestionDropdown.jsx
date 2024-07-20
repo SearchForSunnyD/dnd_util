@@ -41,6 +41,7 @@ export function SuggestionDropdown() {
 		setQuery(item.name);
 		setFilteredResults([]);
 		setDropdownOpen(false);
+		navigate(`/${item.type}/${item.slug}`);
 	};
 
 	const getHighlightedText = (text, highlight) => {
@@ -64,7 +65,7 @@ export function SuggestionDropdown() {
 		if (query) {
 			setFilteredResults([]);
 			setDropdownOpen(false);
-			setQuery('')
+			setQuery("");
 			navigate(`/search-results?query=${query}`);
 		}
 	};

@@ -1,13 +1,13 @@
 import { Route } from "react-router-dom";
 
-import { Monster } from "./Monster";
-import { SpellCard } from "./SpellCard";
-import { MagicItems } from "./MagicItems";
-import { Races } from "./Races";
 import { Armor } from "./Armor";
-import { Feats } from "./Feats";
 import { Backgrounds } from "./Backgrounds";
 import { BasicCard } from "./BasicCard";
+import { Feats } from "./Feats";
+import { MagicItems } from "./MagicItems";
+import { Monster } from "./Monster";
+import { Races } from "./Races";
+import { SpellCard } from "./SpellCard";
 
 export function DetailRoutes() {
 	return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button, Col, Container, Row, Spinner, Card, CardTitle } from "reactstrap";
+import { Button, Col, Container, Row, Spinner } from "reactstrap";
 import { SearchCard } from "./SearchCard";
 import { SuggestionDropdown } from "./SuggestionDropdown";
 import DndApi from "./api";
@@ -25,11 +25,12 @@ export function SearchResult() {
 	}, [query]);
 
 	const renderSearchCards = () => {
-		if (!list || !list.head) return (
-			<Container className="m-4">
-				<h4 className="text-center">No results found</h4>
-			</Container>
-		);
+		if (!list || !list.head)
+			return (
+				<Container className="m-4">
+					<h4 className="text-center">No results found</h4>
+				</Container>
+			);
 		return currentNode.data.map((item) => (
 			<SearchCard key={item.slug} data={item} />
 		));
@@ -46,7 +47,7 @@ export function SearchResult() {
 			setCurrentNode(currentNode.next);
 		}
 	};
-	
+
 	window.scrollTo(0, 0);
 
 	return (

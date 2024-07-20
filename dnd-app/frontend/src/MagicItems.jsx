@@ -37,7 +37,10 @@ export function MagicItems() {
 	useEffect(() => {
 		async function getInfo() {
 			setLoading(true);
-			let res = await DndApi.getFromExternal({ type: "magicitems", slug });
+			let res = await DndApi.getFromExternal({
+				type: "magicitems",
+				slug,
+			});
 			console.log(res);
 			setData(res);
 			setLoading(false);
@@ -78,12 +81,16 @@ export function MagicItems() {
 										target="rarity"
 										offset={[80, 9]}
 										placement="bottom"
+										trigger="legacy"
 									>
 										<PopoverHeader className="bisque">
 											Item Rarity
 										</PopoverHeader>
 										<PopoverBody className="antique">
-											<Table size="sm" className="tan border border-dark">
+											<Table
+												size="sm"
+												className="tan border border-dark"
+											>
 												<thead>
 													<tr>
 														<th>Rarity</th>

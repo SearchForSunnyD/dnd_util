@@ -6,7 +6,7 @@ export const DataContext = React.createContext();
 
 export function DataContextWrapper({ children }) {
 	const [searchSlugs, updateSearchSlugs] = useState([]);
-  
+
 	const [user, login, logout, signUp, autoLogin, updateUser] = useUser();
 	const [userData] = useLocalStorage("userData");
 
@@ -17,14 +17,13 @@ export function DataContextWrapper({ children }) {
 	}, []);
 
 	useEffect(() => {
-    async function getSearch() {
-      const res = await DndApi.getSearchSlugs();
+		async function getSearch() {
+			const res = await DndApi.getSearchSlugs();
 
 			updateSearchSlugs(res.results);
 		}
 		getSearch();
-  }, []);
-  
+	}, []);
 
 	return (
 		<DataContext.Provider

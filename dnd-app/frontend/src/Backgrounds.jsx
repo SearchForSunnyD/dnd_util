@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
 	Badge,
 	Card,
@@ -10,8 +12,6 @@ import {
 	Row,
 	Spinner,
 } from "reactstrap";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import DndApi from "./api";
 
 import("./assets/styles/Details.css");
@@ -24,7 +24,10 @@ export function Backgrounds() {
 	useEffect(() => {
 		async function getInfo() {
 			setLoading(true);
-			let res = await DndApi.getFromExternal({ type: "backgrounds", slug });
+			let res = await DndApi.getFromExternal({
+				type: "backgrounds",
+				slug,
+			});
 			setData(res);
 			setLoading(false);
 		}
