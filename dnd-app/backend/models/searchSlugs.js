@@ -1,4 +1,10 @@
+"use strict";
+
 const db = require("../db.js");
+
+const {
+	NotFoundError,
+} = require("../expressError.js");
 
 function sortByName(arr) {
 	return arr.sort((a, b) => {
@@ -14,7 +20,9 @@ function sortByName(arr) {
 class SearchSlugs {
 	static async getSlugs() {
 		const results = await db.query(
-			`SELECT *
+			`SELECT name,
+			slug,
+			route_prefix as "type"
 			 FROM search_slugs
 			`
 		);
@@ -58,7 +66,11 @@ class SearchSlugs {
 			[str]
 		);
 
-		return sortByName(results.rows);
+		const slug = results.rows[0];
+
+		if (!slug) throw new NotFoundError(`No Item: ${str}`);
+
+		return slug;
 	}
 }
 
