@@ -30,7 +30,6 @@ export function Monster() {
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({ type: "monsters", slug });
-			console.log(res);
 			setData(res);
 			setLoading(false);
 		}
@@ -400,7 +399,6 @@ export function Monster() {
 											</CardText>
 										</Col>
 									</Row>
-
 									<hr />
 									<h5 className="mt-4">Environments</h5>
 									<Row className="p-3 env">
