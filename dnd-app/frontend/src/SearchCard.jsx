@@ -4,7 +4,6 @@ import {
 	Card,
 	CardBody,
 	CardImg,
-	CardText,
 	CardTitle,
 	Col,
 	Container,
@@ -28,11 +27,13 @@ export function SearchCard({ data }) {
 		getInfo();
 	}, [data]);
 
+console.log(`${data.type}/${data.slug}`);
+
 	return (
-		<Container data={info.slug} className="p-4">
+		<Container data={data.slug} className="p-4">
 			<Row>
 				<Col md="1">
-					<CardImg src={`./icons/${data.type}.png`} />
+					<CardImg className="search-img" src={`./icons/${data.type}.png`} />
 				</Col>
 				<Col md="11">
 					<Card className="antique h-100">
@@ -40,15 +41,16 @@ export function SearchCard({ data }) {
 							<CardTitle tag="h2">
 								<strong>{info.name}</strong>{" "}
 							</CardTitle>
-							<Badge pill>
-								Tag: {data.type}
-							</Badge>
+							<Badge pill>Tag: {data.type}</Badge>
 							<Badge pill color="warning">
 								<a href={info.document__url}>
 									{info.document__title}
 								</a>
 							</Badge>
-							<a href={``} className="stretched-link"></a>
+							<a
+								href={`/${data.type}/${data.slug}`}
+								className="stretched-link"
+							></a>
 						</CardBody>
 					</Card>
 				</Col>
