@@ -13,6 +13,7 @@ import {
 	Row,
 } from "reactstrap";
 import DndApi from "./api";
+
 import "./assets/styles/SuggestionDropdown.css";
 
 export function SuggestionDropdown() {

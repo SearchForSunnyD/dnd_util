@@ -20,7 +20,6 @@ class LinkedList {
 		} else {
 			let new_node = new Node(val);
 			new_node.prev = this.tail;
-			new_node.next = this.head;
 			this.tail.next = new_node;
 			this.tail = new_node;
 		}
@@ -70,4 +69,8 @@ function stripMarkdownFromObject(obj) {
 	}
 }
 
-export { LinkedList, Node, getDescription, stripMarkdownFromObject };
+function getScore(num) {
+	return Math.floor((num-10)/2)
+}
+
+export { LinkedList, Node, getDescription, stripMarkdownFromObject, getScore };
