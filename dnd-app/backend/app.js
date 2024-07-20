@@ -13,9 +13,13 @@ const usersRoutes = require("./routes/users");
 const characterRoutes = require("./routes/users");
 const searchRoutes = require("./routes/searchSlugs");
 
+const buildSlugDb = require("./buildSearch");
+
 const morgan = require("morgan");
 
 const app = express();
+
+if (process.env.NODE_ENV !== "test") buildSlugDb();
 
 app.use(cors());
 app.use(express.json());
