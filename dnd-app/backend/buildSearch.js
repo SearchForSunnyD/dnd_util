@@ -76,6 +76,7 @@ async function buildSlugDb() {
 		"magicitems",
 		"weapons",
 		"armor",
+		"sections",
 		"spells",
 		"spelllist",
 	];
