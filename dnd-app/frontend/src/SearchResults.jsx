@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button, Col, Container, Row, Spinner } from "reactstrap";
+import { Button, Col, Container, Row, Spinner, Card, CardTitle } from "reactstrap";
 import { SearchCard } from "./SearchCard";
 import { SuggestionDropdown } from "./SuggestionDropdown";
 import DndApi from "./api";
@@ -9,7 +9,7 @@ export function SearchResult() {
 	const location = useLocation();
 	const query = new URLSearchParams(location.search).get("query");
 	const [currentNode, setCurrentNode] = useState(null);
-	const [list, setList] = useState({});
+	const [list, setList] = useState(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -25,7 +25,11 @@ export function SearchResult() {
 	}, [query]);
 
 	const renderSearchCards = () => {
-		if (!currentNode || !currentNode.data) return null;
+		if (!list || !list.head) return (
+			<Container className="m-4">
+				<h4 className="text-center">No results found</h4>
+			</Container>
+		);
 		return currentNode.data.map((item) => (
 			<SearchCard key={item.slug} data={item} />
 		));
@@ -41,8 +45,8 @@ export function SearchResult() {
 		if (currentNode && currentNode.next) {
 			setCurrentNode(currentNode.next);
 		}
-  };
-  
+	};
+	
 	window.scrollTo(0, 0);
 
 	return (
@@ -61,6 +65,7 @@ export function SearchResult() {
 								<Button
 									onClick={handlePrevPage}
 									disabled={!currentNode?.prev}
+									className="m-2"
 								>
 									Previous
 								</Button>
@@ -69,7 +74,8 @@ export function SearchResult() {
 							<Col md="1">
 								<Button
 									onClick={handleNextPage}
-									disabled={currentNode.next === list.head}
+									disabled={!currentNode?.next}
+									className="m-2"
 								>
 									Next
 								</Button>
