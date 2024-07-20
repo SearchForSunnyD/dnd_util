@@ -32,10 +32,13 @@ console.log(`${data.type}/${data.slug}`);
 	return (
 		<Container data={data.slug} className="p-4">
 			<Row>
-				<Col md="1">
-					<CardImg className="search-img" src={`./icons/${data.type}.png`} />
+				<Col className="flex-grow-0">
+					<CardImg
+						className="search-img"
+						src={`./icons/${data.type}.png`}
+					/>
 				</Col>
-				<Col md="11">
+				<Col>
 					<Card className="antique h-100">
 						<CardBody>
 							<CardTitle tag="h2">
