@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { UserRoutes } from "./UserRoutes";
+import { SearchResult } from "./SearchResults";
 
 
 export function RouteList() {
@@ -9,6 +10,7 @@ export function RouteList() {
 			<Routes>
 				{UserRoutes()}
 				<Route path="/*" element={<Navigate to="/" />} />
+				<Route path="/search-results" element={<SearchResult />} />
 			</Routes>
 		</main>
 	);

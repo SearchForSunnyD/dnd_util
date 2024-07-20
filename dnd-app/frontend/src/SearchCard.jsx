@@ -3,28 +3,21 @@ import {
 	Badge,
 	Card,
 	CardBody,
-	CardSubtitle,
+	CardImg,
 	CardText,
 	CardTitle,
-	Spinner,
+	Col,
+	Container,
+	Row,
 } from "reactstrap";
 import DndApi from "./api";
 
-import "./assets/styles/SearchCard.css";
+import("./assets/styles/Details.css");
 
-/**
- * Functional component for displaying a search card with information fetched from an external API.
- * @param {{data}} data - The data object containing information to display on the card.
- * @returns JSX element representing the search card with title, description, and tag.
- */
 export function SearchCard({ data }) {
 	let [info, setInfo] = useState({});
 
 	useEffect(() => {
-  /**
-   * Asynchronously fetches information from an external API using the DndApi class and sets the retrieved data as the component's info state.
-   * @returns {Promise<void>}
-   */
 		async function getInfo() {
 			let res = await DndApi.getFromExternal(data);
 
@@ -34,22 +27,31 @@ export function SearchCard({ data }) {
 		getInfo();
 	}, [data]);
 
+	console.log(info);
+
 	return (
-		<Card className="search-card">
-			<img
-				src={`./icons/${data.type}.png`}
-				height={"100px"}
-				width={"100px"}
-			/>
-			<CardBody>
-				<CardTitle>{data.name}</CardTitle>
-				<CardText className="text-truncate">
-					{info.desc ? info.desc : <Spinner size="sm" type="grow" />}
-				</CardText>
-				<CardSubtitle>
-					<Badge>Tag: {data.type}</Badge>
-				</CardSubtitle>
-			</CardBody>
-		</Card>
+		<Container data={info.slug} className="p-4">
+			<Row>
+				<Col md="2">
+					<CardImg src={`./icons/${data.type}.png`} />
+				</Col>
+				<Col md="10">
+					<Card className="antique h-100">
+						<CardBody>
+							<CardTitle tag="h2">
+								<strong>{info.name}</strong>{" "}
+							</CardTitle>
+							<Badge pill>
+								Tag: {data.type}
+							</Badge>
+							<CardText className="text-truncate">
+								<h5>Description: </h5>
+								{info.desc ? info.desc : "None"}
+							</CardText>
+						</CardBody>
+					</Card>
+				</Col>
+			</Row>
+		</Container>
 	);
 }

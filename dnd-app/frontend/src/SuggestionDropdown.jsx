@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	Button,
 	Col,
@@ -18,6 +19,7 @@ export function SuggestionDropdown() {
 	const [query, setQuery] = useState("");
 	const [filteredResults, setFilteredResults] = useState([]);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const getFiltered = async () => {
@@ -57,6 +59,12 @@ export function SuggestionDropdown() {
 		);
 	};
 
+	const handleSubmit = () => {
+		if (query) {
+			navigate(`/search-results?query=${query}`);
+		}
+	};
+
 	return (
 		<Container fluid>
 			<Row className="justify-content-center">
@@ -73,18 +81,22 @@ export function SuggestionDropdown() {
 									value={query}
 									onChange={(e) => setQuery(e.target.value)}
 								/>
-								<Button>Submit</Button>
+								<Button onClick={handleSubmit}>Submit</Button>
 							</InputGroup>
 						</DropdownToggle>
 						<DropdownMenu className="w-100">
-							{filteredResults.map((item, index) => (
+							{filteredResults.length > 0 ? filteredResults.map((item) => (
 								<DropdownItem
-									key={index}
+									key={item.slug}
 									onClick={() => handleItemClick(item)}
 								>
 									{getHighlightedText(item.name, query)}
 								</DropdownItem>
-							))}
+							)) : (
+								<DropdownItem disabled>
+									Search results: None
+								</DropdownItem>
+							)}
 						</DropdownMenu>
 					</Dropdown>
 				</Col>
@@ -92,5 +104,3 @@ export function SuggestionDropdown() {
 		</Container>
 	);
 }
-
-export default SuggestionDropdown;
