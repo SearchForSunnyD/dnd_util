@@ -63,53 +63,48 @@ export function Monster() {
 									)}
 									<hr />
 									<Row>
-										<CardText className="col-2">
+										<CardText className="col-3">
 											<strong>Type:</strong> {data.type}{" "}
 											{data.subtype
 												? `(${data.subtype})`
 												: ""}
 										</CardText>
-										<CardText className="col-2">
+										<CardText className="col-3">
 											<strong>Size:</strong> {data.size}
 										</CardText>
-										<CardText className="col-2 text-capitalize">
+										<CardText className="col-3 text-capitalize">
 											<strong>Alignment:</strong>{" "}
 											{data.alignment}
 										</CardText>
-										<CardText className="col-2">
+										<CardText className="col-3">
 											<strong>Armor Class:</strong>{" "}
 											{data.armor_class}
 										</CardText>
-										<CardText className="col-2">
+										<CardText className="col-3">
 											<strong>Hit Points:</strong>{" "}
 											{data.hit_points}
 										</CardText>
-										<CardText className="col-2">
+										<CardText className="col-3">
 											<strong>Hit Dice:</strong>{" "}
 											{data.hit_dice}
 										</CardText>
-										<CardText className="col-2 text-capitalize">
+										<CardText className="col-3 text-capitalize">
 											<strong>Speed:</strong>{" "}
 											{Object.keys(data.speed).map(
 												(speed, index) => (
-													<ListGroupItem key={index}>
+													<CardText
+														className="m-0"
+														key={index}
+													>
 														{speed}{" "}
 														{data.speed[speed]} ft.
-													</ListGroupItem>
+													</CardText>
 												)
 											)}
 										</CardText>
-										<CardText className="col-2 text-capitalize">
+										<CardText className="col-3 text-capitalize">
 											<strong>Senses:</strong>{" "}
 											{data.senses}
-										</CardText>
-										<CardText className="col-2 text-capitalize">
-											<strong>Languages:</strong>{" "}
-											{data.languages}
-										</CardText>
-										<CardText className="col-2">
-											<strong>Challenge Rating:</strong>{" "}
-											{data.challenge_rating}
 										</CardText>
 									</Row>
 									<hr />
@@ -138,11 +133,16 @@ export function Monster() {
 												)
 										  )
 										: "None"}
-									<hr />
-									<h5 className="mt-4">Legendary Actions</h5>
-									<CardText>
-										{data.legendary_actions > 0
-											? data.legendary_actions.map(
+									{!data.legendary_actions ? (
+										<></>
+									) : (
+										<>
+											<hr />
+											<h5 className="mt-4">
+												Legendary Actions
+											</h5>
+											<CardText>
+												{data.legendary_actions.map(
 													(action, index) => (
 														<p key={index}>
 															<strong>
@@ -152,9 +152,22 @@ export function Monster() {
 															{action.desc}
 														</p>
 													)
-											  )
-											: "None"}
-									</CardText>
+												)}
+											</CardText>
+										</>
+									)}
+
+									<hr />
+									<Row>
+										<CardText className="col-6 text-capitalize">
+											<strong>Languages:</strong>{" "}
+											{data.languages}
+										</CardText>
+										<CardText className="col-6">
+											<strong>Challenge Rating:</strong>{" "}
+											{data.challenge_rating}
+										</CardText>
+									</Row>
 									<hr />
 									<Row>
 										<Col>
@@ -363,56 +376,90 @@ export function Monster() {
 									</Row>
 									<hr />
 									<Row>
-										<Col>
-											<ListGroup>
-												<strong>Skills:</strong>{" "}
-												{Object.keys(data.skills).map(
-													(skill, index) =>
-														(
-															<ListGroupItem
-																className="text-capitalize"
-																key={index}
-															>
-																{skill}{" "}
-																{
-																	data.skills[
-																		skill
-																	]
-																}
-															</ListGroupItem>
-														) || "None"
-												)}
-											</ListGroup>
-										</Col>
-										<Col>
-											<CardText className="text-capitalize">
-												<strong>Group:</strong>{" "}
-												{data.group || "None"}
-											</CardText>
-										</Col>
-										<Col>
-											<CardText className="text-capitalize">
-												<strong>
-													Armor Description:
-												</strong>{" "}
-												{data.armor_desc || "None"}
-											</CardText>
-										</Col>
-									</Row>
-									<hr />
-									<h5 className="mt-4">Environments</h5>
-									<Row className="p-3 env">
-										{data.environments.map(
-											(environment, index) => (
-												<ListGroupItem
-													className="col-2 text-capitalize"
-													key={index}
-												>
-													{environment}
-												</ListGroupItem>
-											)
+										{!data.skill ? (
+											<></>
+										) : (
+											<>
+												<Col className="mx-2">
+													<strong>Skills:</strong>{" "}
+													<Row className="border rounded antique">
+														{Object.keys(
+															data.skills
+														).map(
+															(skill, index) =>
+																(
+																	<Col
+																		className="text-capitalize text-center col-3"
+																		key={
+																			index
+																		}
+																	>
+																		<strong>
+																			{
+																				skill
+																			}
+																		</strong>
+																		{": "}
+																		{
+																			data
+																				.skills[
+																				skill
+																			]
+																		}
+																	</Col>
+																) || "None"
+														)}
+													</Row>
+													{!data.armar_desc ? (
+														<></>
+													) : (
+														<CardText className="text-capitalize">
+															<strong>
+																Armor
+																Description:
+															</strong>{" "}
+															{data.armor_desc}
+														</CardText>
+													)}
+													{!data.group ? (
+														<></>
+													) : (
+														<>
+															<CardText className="text-capitalize text-center">
+																<strong>
+																	Group:
+																</strong>{" "}
+																{data.group}
+															</CardText>
+														</>
+													)}
+												</Col>
+											</>
 										)}
 									</Row>
+
+									{!data.environment ? (
+										<></>
+									) : (
+										<>
+											<hr />
+											<h5 className="mt-4">
+												Environments
+											</h5>
+											<Row className="p-3 text-center antique">
+												{data.environments.map(
+													(environment, index) => (
+														<Col
+															className="col-2 text-capitalize"
+															key={index}
+														>
+															{environment}
+														</Col>
+													)
+												)}
+											</Row>
+										</>
+									)}
 									<CardText className="mt-3">
 										<strong>Source:</strong>{" "}
 										<Badge pill color="warning">
