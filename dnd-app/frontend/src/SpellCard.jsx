@@ -15,11 +15,10 @@ import {
 	UncontrolledPopover,
 	PopoverHeader,
 } from "reactstrap";
-import { data, getDescription } from "./tools";
 
 import("./assets/styles/Details.css");
 
-export function SpellCard() {
+export function SpellCard({ data }) {
 	const badges = [];
 
 	data.components.split(", ").map((c) => badges.push(c));
@@ -29,7 +28,7 @@ export function SpellCard() {
 			<Row>
 				<CardImg src="./icons/spells.png" />
 				<Col>
-					<Card className="info">
+					<Card className="info bisque">
 						<CardBody>
 							<CardTitle tag="h1">{data.name}</CardTitle>
 							<CardSubtitle>
@@ -297,7 +296,7 @@ export function SpellCard() {
 									);
 								})}
 							</CardSubtitle>
-							<CardText>{getDescription(data)}</CardText>
+							<CardText>{data.desc}</CardText>
 							<Row className="fw-light">
 								<Col>
 									<strong>Range:</strong> {data.range}

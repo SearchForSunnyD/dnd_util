@@ -10,13 +10,10 @@ import {
 	Container,
 	Row,
 } from "reactstrap";
-import { stripMarkdownFromObject } from "./tools";
 
 import("./assets/styles/Details.css");
 
-export function Races({data}) {
-	const clean = stripMarkdownFromObject(data);
-
+export function Races({ data }) {
 	return (
 		<Container>
 			<Row>
@@ -26,7 +23,7 @@ export function Races({data}) {
 						<CardTitle tag="h5">Ability Score</CardTitle>
 						<CardText>
 							<Row>
-								{clean.asi.map((item, index) => (
+								{data.asi.map((item, index) => (
 									<Col key={index}>
 										<div>
 											<CardText>
@@ -39,7 +36,7 @@ export function Races({data}) {
 						</CardText>
 						<hr />
 						<CardTitle tag="h5">Size</CardTitle>
-						<CardText>{clean.size_raw}</CardText>
+						<CardText>{data.size_raw}</CardText>
 						<hr />
 						<CardTitle tag="h5">Speed</CardTitle>
 						<CardText className="text-capitalize">
@@ -54,44 +51,40 @@ export function Races({data}) {
 				<Col>
 					<Card className="info bisque">
 						<CardBody>
-							<CardTitle tag="h1">{clean.name}</CardTitle>
-							<CardText>{clean.desc || ""}</CardText>
-							{clean.asi_desc ? (
-								<CardText>{clean.asi_desc}</CardText>
+							<CardTitle tag="h1">{data.name}</CardTitle>
+							<CardText>{data.desc || ""}</CardText>
+							{data.asi_desc ? (
+								<CardText>{data.asi_desc}</CardText>
 							) : (
 								""
 							)}
-							{clean.age ? <CardText>{clean.age}</CardText> : ""}
-							{clean.alignment ? (
-								<CardText>{clean.alignment}</CardText>
+							{data.age ? <CardText>{data.age}</CardText> : ""}
+							{data.alignment ? (
+								<CardText>{data.alignment}</CardText>
 							) : (
 								""
 							)}
-							{clean.size ? (
-								<CardText>{clean.size}</CardText>
-							) : (
-								""
-							)}
-							{clean.speed_desc ? (
-								<CardText>{clean.speed_desc}</CardText>
+							{data.size ? <CardText>{data.size}</CardText> : ""}
+							{data.speed_desc ? (
+								<CardText>{data.speed_desc}</CardText>
 							) : (
 								""
 							)}
 							<CardText>
-								{clean.languages || "Languages: None"}
+								{data.languages || "Languages: None"}
 							</CardText>
-							{clean.vision ? (
-								<CardText>{clean.vision}</CardText>
+							{data.vision ? (
+								<CardText>{data.vision}</CardText>
 							) : (
 								""
 							)}
-							{clean.traits ? (
-								<CardText>{clean.traits}</CardText>
+							{data.traits ? (
+								<CardText>{data.traits}</CardText>
 							) : (
 								""
 							)}
-							{clean.subraces
-								? clean.subraces.map((race) => {
+							{data.subraces
+								? data.subraces.map((race) => {
 										const sRace =
 											stripMarkdownFromObject(race);
 										return (
@@ -168,8 +161,8 @@ export function Races({data}) {
 							<CardText className="mt-3">
 								<strong>Source:</strong>{" "}
 								<Badge pill color="warning">
-									<a href={clean.document__url}>
-										{clean.document__title}
+									<a href={data.document__url}>
+										{data.document__title}
 									</a>
 								</Badge>
 							</CardText>

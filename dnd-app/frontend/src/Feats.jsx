@@ -21,7 +21,7 @@ export function Feats({data}) {
 			<Row>
 				<CardImg src="./icons/feats.png" />
 				<Col>
-					<Card className="info">
+					<Card className="info bisque">
 						<CardBody>
 							<CardTitle tag="h1">{data.name}</CardTitle>
 							<CardSubtitle>

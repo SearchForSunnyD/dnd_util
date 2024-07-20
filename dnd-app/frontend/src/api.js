@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LinkedList } from "./tools";
+import { LinkedList, getDescription, stripMarkdownFromObject } from "./tools";
 
 const BASE_URL = "http://localhost:3001";
 
@@ -94,7 +94,10 @@ class DndApi {
 	static async getFromExternal({ type, slug }) {
 		const url = "https://api.open5e.com/v1";
 		let res = await this.externalRequest(url, type, slug);
-		return res.data
+		let cleaned = stripMarkdownFromObject(res.data);
+		cleaned.desc = getDescription(cleaned);
+
+		return cleaned;
 	}
 }
 

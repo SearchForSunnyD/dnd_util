@@ -13,7 +13,6 @@ import {
 	Row,
 	Badge,
 } from "reactstrap";
-import { getDescription } from "./tools";
 
 import("./assets/styles/Details.css");
 
@@ -23,12 +22,12 @@ export function Monster({ data }) {
 			<Row>
 				<CardImg src="./icons/monsters.png" />
 				<Col>
-					<Card className="info">
+					<Card className="info bisque">
 						<Col>
 							<CardBody>
 								<CardTitle tag="h3">{data.name}</CardTitle>
 								<CardSubtitle>
-									{getDescription(data) ||
+									{data.desc ||
 										data.legendary_desc}
 								</CardSubtitle>
 								<hr />
@@ -58,7 +57,7 @@ export function Monster({ data }) {
 										<strong>Hit Dice:</strong>{" "}
 										{data.hit_dice}
 									</CardText>
-									<CardText className="col-2">
+									<CardText className="col-2 text-capitalize">
 										<strong>Speed:</strong>{" "}
 										{Object.keys(data.speed).map(
 											(speed, index) => (
@@ -87,7 +86,7 @@ export function Monster({ data }) {
 									<div key={index}>
 										<CardText>
 											<strong>{action.name}:</strong>{" "}
-											{getDescription(action)}
+											{action.desc}
 										</CardText>
 									</div>
 								))}
@@ -101,9 +100,8 @@ export function Monster({ data }) {
 														<strong>
 															{ability.name}:
 														</strong>{" "}
-														{getDescription(
-															ability
-														)}
+														{
+															ability.desc														)}
 													</CardText>
 												</div>
 											)
@@ -120,7 +118,7 @@ export function Monster({ data }) {
 															{action.name}
 														</strong>
 														{": "}
-														{getDescription(action)}
+														{action.desc}
 													</p>
 												)
 										  )
