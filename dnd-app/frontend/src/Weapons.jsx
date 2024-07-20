@@ -15,7 +15,7 @@ import {
 
 import("./assets/styles/Details.css");
 
-export function TestFile({ data }) {
+export function Weapons({ data }) {
 	return (
 		<Container>
 			<Row>

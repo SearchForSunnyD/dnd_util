@@ -13,7 +13,7 @@ import {
 
 import("./assets/styles/Details.css");
 
-export function TestFile({ data }) {
+export function Armor({ data }) {
 	return (
 		<Container>
 			<Row>

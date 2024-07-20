@@ -2,7 +2,6 @@ import { BrowserRouter } from "react-router-dom";
 import { DataContextWrapper } from "./DataContextWrapper";
 import { NavBar } from "./NavBar";
 import { RouteList } from "./RouteList";
-import { TestFile } from "./TestFile"
 
 import "./assets/styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,7 +13,6 @@ function App() {
 			<BrowserRouter>
 				<NavBar />
 				<RouteList />
-				<TestFile />
 			</BrowserRouter>
 		</DataContextWrapper>
 	);
