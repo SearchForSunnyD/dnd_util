@@ -1,5 +1,23 @@
 const axios = require("axios");
-const db =  require("./db");
+const db = require("./db");
+
+/**
+ * Asynchronously checks if a record with the provided slug already exists in the database.
+ * @param {string} slug - The slug to check for.
+ * @returns {boolean} - Returns true if the record exists, false otherwise.
+ */
+async function recordExists(slug) {
+	try {
+		const res = await db.query(
+			`SELECT 1 FROM search_slugs WHERE slug = $1`,
+			[slug]
+		);
+		return res.rows.length > 0;
+	} catch (error) {
+		console.error(`Error checking existence of slug: ${slug}`, error);
+		return false;
+	}
+}
 
 /**
  * Asynchronously inserts a new record into the database with the provided slug, name, and prefix.
@@ -24,7 +42,7 @@ async function insertDb({ slug, name, prefix }) {
 		);
 	} catch (error) {
 		if (error.code === "23505") {
-			console.log(`Duplicate entry found for slug: ${slug}`);
+			console.debug(`Duplicate entry found for slug: ${slug}`);
 		} else {
 			console.error(`Error inserting data for slug: ${slug}`, error);
 		}
@@ -46,14 +64,17 @@ async function fetchAndInsertData(prefix, url) {
 			more = res.data.next;
 			const results = res.data.results;
 			for (const result of results) {
-				await insertDb({
-					slug: result.slug,
-					name: result.name,
-					prefix,
-				});
+				const exists = await recordExists(result.slug);
+				if (!exists) {
+					await insertDb({
+						slug: result.slug,
+						name: result.name,
+						prefix,
+					});
+				}
 			}
-    }
-    console.log(`Finished importing ${prefix} slugs`)
+		}
+		console.debug(`Finished importing ${prefix} slugs`);
 	} catch (error) {
 		console.error(`Error fetching data for ${prefix}:`, error);
 	}
@@ -84,4 +105,4 @@ async function buildSlugDb() {
 	await Promise.all(calls.map((prefix) => fetchAndInsertData(prefix, url)));
 }
 
-module.exports = buildSlugDb
+module.exports = buildSlugDb;
