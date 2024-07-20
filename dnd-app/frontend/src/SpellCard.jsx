@@ -21,6 +21,7 @@ import {
 import DndApi from "./api";
 
 import("./assets/styles/Details.css");
+import("./assets/styles/SpellCard.css");
 
 export function SpellCard() {
 	const { slug } = useParams();
@@ -31,7 +32,6 @@ export function SpellCard() {
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({ type: "spells", slug });
-			console.log(res);
 			setData(res);
 			setLoading(false);
 		}
@@ -378,17 +378,17 @@ export function SpellCard() {
 								<hr />
 								<ListGroup>
 									<h5>Additional Info</h5>
-									<ListGroupItem>
+									<ListGroupItem className="antique">
 										<strong>Material Components:</strong>{" "}
 										{(data.requires_material_components &&
 											`${data.material}`) ||
 											`None`}
 									</ListGroupItem>
-									<ListGroupItem>
+									<ListGroupItem className="antique">
 										<strong>Classes:</strong>{" "}
 										{data.dnd_class}
 									</ListGroupItem>
-									<ListGroupItem>
+									<ListGroupItem className="antique">
 										<strong>Cast as ritual: </strong>
 										{data.can_be_cast_as_ritual
 											? "True"
