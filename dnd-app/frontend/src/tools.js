@@ -32,18 +32,42 @@ function getDescription(data) {
 	return data.desc || data.description || null;
 }
 
-const data = {
-	slug: "powerful-attacker",
-	name: "Powerful Attacker",
-	desc: "You reap a bloody harvest with a two-handed weapon.",
-	prerequisite: null,
-	effects_desc: [
-		"You gain proficiency with the Cleaving Swing maneuver and do not have to spend exertion to activate it",
-		"Before you make an attack with a heavy weapon you are proficient with, you can choose to make the attack roll with disadvantage. If the attack hits, you deal 10 extra damage.",
-	],
-	document__slug: "a5e",
-	document__title: "Level Up Advanced 5e",
-	document__url: "https://a5esrd.com/a5esrd",
-};
+function stripMarkdownFromString(markdownText) {
+	return markdownText
+		.replace(/(?:_|[*#])|\[(.*?)\]\(.*?\)/g, "$1") // Remove _, *, #, and [text](link)
+		.replace(/!\[(.*?)\]\(.*?\)/g, "$1") // Remove ![alt text](link)
+		.replace(/\*\*(.*?)\*\*/g, "$1") // Remove bold **
+		.replace(/\*(.*?)\*/g, "$1") // Remove italics *
+		.replace(/~~(.*?)~~/g, "$1") // Remove strikethrough ~~
+		.replace(/`(.*?)`/g, "$1") // Remove inline code `
+		.replace(/^\s*>\s+/gm, "") // Remove blockquotes
+		.replace(/^#+\s+/gm, "") // Remove headings #
+		.replace(/^\s*-\s+/gm, "") // Remove unordered list
+		.replace(/^\s*\d+\.\s+/gm, "") // Remove ordered list
+		.replace(/\n/g, " "); // Replace new lines with space
+}
 
-export { LinkedList, Node, data, getDescription };
+function stripMarkdownFromObject(obj) {
+	if (typeof obj === "string") {
+		return stripMarkdownFromString(obj);
+	} else if (Array.isArray(obj)) {
+		return obj.map((item) => stripMarkdownFromObject(item));
+	} else if (obj instanceof Set) {
+		const newSet = new Set();
+		for (let item of obj) {
+			newSet.add(stripMarkdownFromObject(item));
+		}
+		return newSet;
+	} else if (obj !== null && typeof obj === "object") {
+		for (let key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				obj[key] = stripMarkdownFromObject(obj[key]);
+			}
+		}
+		return obj;
+	} else {
+		return obj;
+	}
+}
+
+export { LinkedList, Node, getDescription, stripMarkdownFromObject };
