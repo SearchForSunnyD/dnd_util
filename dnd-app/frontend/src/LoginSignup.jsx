@@ -3,12 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { DataContext } from "./DataContextWrapper";
 
+/**
+ * Functional component for handling login and signup functionality.
+ * Uses context to access login and signup functions, and state to manage login and signup errors.
+ * Navigates to different routes using the useNavigate hook.
+ * @returns JSX element for login and signup form.
+ */
 export function LoginSignup() {
 	const { login, signUp } = useContext(DataContext);
 	const [loginError, setLoginError] = useState("");
 	const [signupError, setSignupError] = useState("");
 	const navigate = useNavigate();
 
+	/**
+	 * Handles the login process by preventing the default form submission behavior,
+	 * extracting the username and password from the form fields, attempting to log in
+	 * with the provided credentials, and navigating to the "/login" page upon successful login.
+	 * If login fails, sets an error message and logs the error to the console.
+	 * @param {Event} e - The event object triggered by the form submission.
+	 * @returns {void}
+	 */
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		setLoginError("");
@@ -28,6 +42,14 @@ export function LoginSignup() {
 		}
 	};
 
+	/**
+	 * Handles the signup process by preventing the default form submission behavior,
+	 * extracting user input values, calling the signUp function with the extracted values,
+	 * and navigating to the "/signup" route upon successful signup. If an error occurs during
+	 * the signup process, it sets an error message and logs the error to the console.
+	 * @param {Event} e - The event object triggered by the signup form submission.
+	 * @returns {Promise<void>} - A promise that resolves once the signup process is completed.
+	 */
 	const handleSignup = async (e) => {
 		e.preventDefault();
 		setSignupError("");

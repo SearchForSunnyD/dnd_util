@@ -1,6 +1,11 @@
 import { useState } from "react";
 import DndApi from "./api";
 
+/**
+ * Custom hook to manage a toggle state.
+ * @param {boolean} [initialState=true] - The initial state of the toggle (default is true).
+ * @returns {[boolean, function]} An array containing the current state and a function to toggle the state.
+ */
 const useToggleState = (initialState = true) => {
 	const [state, setState] = useState(initialState);
 	const toggleState = () => {
@@ -9,6 +14,12 @@ const useToggleState = (initialState = true) => {
 	return [state, toggleState];
 };
 
+/**
+ * Custom hook to interact with localStorage.
+ * @param {string} key - The key to store the value in localStorage.
+ * @param {any} [initialValue=null] - The initial value to use if the key is not found in localStorage.
+ * @returns {[any, Function, Function]} An array containing the stored value, a function to set a new value, and a function to remove the item from localStorage.
+ */
 const useLocalStorage = (key, initialValue = null) => {
 	const [storedValue, setStoredValue] = useState(() => {
 		try {
@@ -43,6 +54,11 @@ const useLocalStorage = (key, initialValue = null) => {
 	return [storedValue, setValue, removeItem];
 };
 
+/**
+ * Custom hook to manage user authentication and data storage.
+ * @returns {Array} An array containing current user state, login function, logout function,
+ * sign up function, auto login function, update user function, loading state, and error state.
+ */
 const useUser = () => {
 	const [currUser, setCurrUser] = useState({ isLoggedIn: false });
 	const [loading, setLoading] = useState(false);

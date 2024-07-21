@@ -12,6 +12,11 @@ import { SuggestionDropdown } from "./SuggestionDropdown";
 
 import "./assets/styles/NavBar.css";
 
+/**
+ * Functional component for the navigation bar of the application.
+ * It includes a logo, a suggestion dropdown, and an account dropdown menu.
+ * @returns JSX element representing the navigation bar.
+ */
 export function NavBar() {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 

@@ -16,6 +16,10 @@ import DndApi from "./api";
 
 import "./assets/styles/SuggestionDropdown.css";
 
+/**
+ * SuggestionDropdown component that displays a dropdown menu with search results.
+ * @returns None
+ */
 export function SuggestionDropdown() {
 	const [query, setQuery] = useState("");
 	const [filteredResults, setFilteredResults] = useState([]);
@@ -23,6 +27,14 @@ export function SuggestionDropdown() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		/**
+		 * Retrieves filtered search results from the DndApi based on the provided query.
+		 * If a query is provided, it fetches the filtered search slugs from the DndApi,
+		 * sets the filtered results state, and toggles the dropdown open state based on the
+		 * number of results. If no query is provided, it resets the filtered results state
+		 * and closes the dropdown.
+		 * @returns None
+		 */
 		const getFiltered = async () => {
 			if (query) {
 				const res = await DndApi.getFilteredSearchSlugs(query);
@@ -37,6 +49,13 @@ export function SuggestionDropdown() {
 		getFiltered();
 	}, [query]);
 
+	/**
+	 * Handles the click event when an item is clicked in the dropdown menu.
+	 * Updates the query state with the name of the clicked item, clears the filtered results,
+	 * closes the dropdown menu, and navigates to the corresponding item's page.
+	 * @param {{object}} item - The item that was clicked in the dropdown menu.
+	 * @returns None
+	 */
 	const handleItemClick = (item) => {
 		setQuery(item.name);
 		setFilteredResults([]);
@@ -44,6 +63,12 @@ export function SuggestionDropdown() {
 		navigate(`/${item.type}/${item.slug}`);
 	};
 
+	/**
+	 * Returns the text with the specified highlight applied.
+	 * @param {{string}} text - The text to be highlighted.
+	 * @param {{string}} highlight - The text to highlight within the main text.
+	 * @returns A JSX element with the highlighted text.
+	 */
 	const getHighlightedText = (text, highlight) => {
 		const parts = text.split(new RegExp(`(${highlight})`, "gi"));
 		return (
@@ -61,6 +86,11 @@ export function SuggestionDropdown() {
 		);
 	};
 
+	/**
+	 * Handles the form submission by clearing the filtered results, closing the dropdown,
+	 * resetting the query, and navigating to the search results page with the query parameter.
+	 * @returns None
+	 */
 	const handleSubmit = () => {
 		if (query) {
 			setFilteredResults([]);

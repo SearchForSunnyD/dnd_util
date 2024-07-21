@@ -21,6 +21,10 @@ import DndApi from "./api";
 import("./assets/styles/Details.css");
 import("./assets/styles/MagicItems.css");
 
+/**
+ * Component that displays magic items based on their rarity.
+ * @returns JSX element displaying magic items based on rarity
+ */
 export function MagicItems() {
 	const rarity = {
 		common: "secondary",
@@ -35,6 +39,12 @@ export function MagicItems() {
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		/**
+		 * Asynchronously fetches information from an external API using the DndApi utility.
+		 * Sets loading state to true, then makes a request to retrieve magic items data based on the provided slug.
+		 * Once the data is received, it sets the data state with the response and sets loading state to false.
+		 * @returns None
+		 */
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({

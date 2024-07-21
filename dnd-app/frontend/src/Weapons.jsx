@@ -15,6 +15,11 @@ import {
 
 import("./assets/styles/Details.css");
 
+/**
+ * Functional component that displays information about a weapon.
+ * @param {{data}} data - The data object containing information about the weapon.
+ * @returns JSX element displaying the weapon information.
+ */
 export function Weapons({ data }) {
 	return (
 		<Container>

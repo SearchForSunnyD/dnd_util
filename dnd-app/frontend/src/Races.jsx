@@ -17,12 +17,21 @@ import DndApi from "./api";
 
 import("./assets/styles/Details.css");
 
+/**
+ * Component to display information about a specific race based on the slug parameter.
+ * @returns {JSX.Element} A JSX element containing the information about the race.
+ */
 export function Races() {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		/**
+		 * Asynchronously fetches information about a specific race from an external API.
+		 * Sets loading state to true before making the API call and sets it to false after receiving the response.
+		 * @returns None
+		 */
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({ type: "races", slug });

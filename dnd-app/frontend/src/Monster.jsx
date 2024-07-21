@@ -21,12 +21,21 @@ import { getScore } from "./tools";
 
 import("./assets/styles/Details.css");
 
+/**
+ * Component that fetches and displays information about a monster based on the slug parameter.
+ * @returns JSX element displaying monster information
+ */
 export function Monster() {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		/**
+		 * Asynchronously fetches information about monsters from an external API using the provided slug.
+		 * Sets loading state to true before making the API call and sets it to false after receiving the response.
+		 * @returns None
+		 */
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({ type: "monsters", slug });

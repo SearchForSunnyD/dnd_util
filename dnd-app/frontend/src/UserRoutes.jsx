@@ -5,6 +5,10 @@ import { Logout } from "./Logout";
 import { PrivateRoute } from "./PrivateRoute";
 import { Profile } from "./Profile";
 
+/**
+ * Defines the routes available to the user in the application.
+ * @returns JSX element containing the routes for login, profile, logout, login/signup, and signup.
+ */
 export function UserRoutes() {
 	return (
 		<>

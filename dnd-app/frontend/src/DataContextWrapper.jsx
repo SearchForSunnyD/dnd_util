@@ -4,6 +4,11 @@ import { useLocalStorage, useUser } from "./hooks";
 
 export const DataContext = React.createContext();
 
+/**
+ * A wrapper component that provides data context for the application.
+ * @param {{children}} children - The child components to be wrapped by the data context.
+ * @returns The wrapped components with access to user data and functions.
+ */
 export function DataContextWrapper({ children }) {
 	const [searchSlugs, updateSearchSlugs] = useState([]);
 

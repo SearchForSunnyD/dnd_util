@@ -5,6 +5,10 @@ import { Home } from "./Home";
 import { SearchResult } from "./SearchResults";
 import { UserRoutes } from "./UserRoutes";
 
+/**
+ * Component that defines the routes for the application.
+ * @returns {JSX.Element} The JSX element representing the route list.
+ */
 export function RouteList() {
 	return (
 		<>

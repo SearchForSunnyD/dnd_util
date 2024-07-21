@@ -9,6 +9,12 @@ import { Monster } from "./Monster";
 import { Races } from "./Races";
 import { SpellCard } from "./SpellCard";
 
+/**
+ * Component that defines the detail routes for different sections of the application.
+ * Returns a set of Route components for each specific section.
+ * @returns JSX elements representing the detail routes for monsters, spells, magic items, races, armor, feats,
+ * backgrounds, conditions, and sections.
+ */
 export function DetailRoutes() {
 	return (
 		<>

@@ -14,13 +14,21 @@ import DndApi from "./api";
 import("./assets/styles/Details.css");
 import("./assets/styles/SearchCard.css");
 
+/**
+ * Functional component for rendering a search card with data fetched from an external API.
+ * @param {{data: object}} data - The data object containing information for the search card.
+ * @returns JSX element representing the search card with the fetched information.
+ */
 export function SearchCard({ data }) {
 	let [info, setInfo] = useState({});
 
 	useEffect(() => {
+		/**
+		 * Fetches information from an external API using DndApi and sets the retrieved data as the component's info state.
+		 * @returns None
+		 */
 		async function getInfo() {
 			let res = await DndApi.getFromExternal(data);
-
 			setInfo(res);
 		}
 

@@ -19,12 +19,22 @@ import DndApi from "./api";
 
 import("./assets/styles/Details.css");
 
+/**
+ * Component to display information about a specific feat based on the slug parameter.
+ * Uses the DndApi to fetch data and displays it in a Card component.
+ * @returns {JSX.Element} - Feats component JSX
+ */
 export function Feats() {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		/**
+		 * Asynchronously fetches information from an external API using the DndApi utility.
+		 * Sets loading state to true before making the API call and sets it to false after the call is completed.
+		 * @returns None
+		 */
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({ type: "feats", slug });

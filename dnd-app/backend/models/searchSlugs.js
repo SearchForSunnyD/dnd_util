@@ -6,6 +6,11 @@ const {
 	NotFoundError,
 } = require("../expressError.js");
 
+/**
+ * Sorts an array of objects by the 'name' property in a case-insensitive manner.
+ * @param {Array} arr - The array of objects to be sorted.
+ * @returns {Array} A new array with the objects sorted by the 'name' property.
+ */
 function sortByName(arr) {
 	return arr.sort((a, b) => {
 		const nameA = a.name.toLowerCase();
@@ -17,6 +22,9 @@ function sortByName(arr) {
 	});
 }
 
+/**
+ * A class for retrieving slugs from the database.
+ */
 class SearchSlugs {
 	static async getSlugs() {
 		const results = await db.query(
@@ -30,6 +38,11 @@ class SearchSlugs {
 		return sortByName(results.rows);
 	}
 
+ /**
+  * Retrieves partial search results from the database based on the provided string.
+  * @param {string} str - The partial string to search for in the database.
+  * @returns {Promise<Array>} A promise that resolves to an array of sorted search results.
+  */
 	static async getSomePartial(str) {
 		const results = await db.query(
 			`SELECT name,
@@ -44,6 +57,11 @@ class SearchSlugs {
 		return sortByName(results.rows);
 	}
 
+ /**
+  * Retrieves partial search results from the database based on the provided string.
+  * @param {string} str - The partial string to search for in the database.
+  * @returns {Promise<Array>} A promise that resolves to an array of sorted search results.
+  */
 	static async getPartial(str) {
 		const results = await db.query(
 			`SELECT
@@ -58,6 +76,12 @@ class SearchSlugs {
 		return sortByName(results.rows);
 	}
 
+ /**
+  * Retrieves the slug for the given name from the database.
+  * @param {string} str - The name for which to retrieve the slug.
+  * @returns {Promise<Object>} A promise that resolves to the slug object.
+  * @throws {NotFoundError} If no slug is found for the given name.
+  */
 	static async getSlug(str) {
 		const results = await db.query(
 			`SELECT slug

@@ -16,12 +16,21 @@ import DndApi from "./api";
 
 import("./assets/styles/Details.css");
 
+/**
+ * Component to display background information based on the slug parameter.
+ * @returns None
+ */
 export function Backgrounds() {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		/**
+		 * Asynchronously fetches information from an external API using the DndApi service.
+		 * Sets loading state to true before making the API call and sets it back to false after the call is completed.
+		 * @returns {Promise<void>} A Promise that resolves once the API call is completed.
+		 */
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({

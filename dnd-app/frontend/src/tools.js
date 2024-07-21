@@ -1,4 +1,7 @@
 /* eslint-disable no-prototype-builtins */
+/**
+ * Represents a node in a linked list.
+ */
 class Node {
 	constructor(data) {
 		this.data = data;
@@ -7,12 +10,22 @@ class Node {
 	}
 }
 
+/**
+ * Represents a linked list data structure.
+ */
 class LinkedList {
 	constructor() {
 		this.head = null;
 		this.length = 0;
 	}
 
+ /**
+  * Adds a new node with the given value to the end of the linked list.
+  * If the linked list is empty, the new node becomes both the head and the tail.
+  * Otherwise, the new node is added after the current tail node.
+  * @param {any} val - The value to be added to the linked list as a new node.
+  * @returns None
+  */
 	push(val) {
 		if (this.head === null) {
 			let new_node = new Node(val);
@@ -28,10 +41,20 @@ class LinkedList {
 	}
 }
 
+/**
+ * Returns the description from the given data object.
+ * @param {object} data - The data object containing the description.
+ * @returns {string|null} The description if found, otherwise null.
+ */
 function getDescription(data) {
 	return data.desc || data.description || null;
 }
 
+/**
+ * Removes markdown syntax from a given markdown text and returns the plain text.
+ * @param {string} markdownText - The markdown text to strip markdown syntax from.
+ * @returns {string} The plain text without markdown syntax.
+ */
 function stripMarkdownFromString(markdownText) {
 	return markdownText
 		.replace(/(?:_|[*#])|\[(.*?)\]\(.*?\)/g, "$1") // Remove _, *, #, and [text](link)
@@ -47,6 +70,11 @@ function stripMarkdownFromString(markdownText) {
 		.replace(/\n/g, " "); // Replace new lines with space
 }
 
+/**
+ * Recursively removes Markdown formatting from a given object.
+ * @param {any} obj - The object to strip Markdown from.
+ * @returns {any} The object with Markdown formatting removed.
+ */
 function stripMarkdownFromObject(obj) {
 	if (typeof obj === "string") {
 		return stripMarkdownFromString(obj);
@@ -70,6 +98,13 @@ function stripMarkdownFromObject(obj) {
 	}
 }
 
+/**
+ * Calculates an ability's modifier based on the input ability score.
+ * The score is calculated by subtracting 10 from the input number and then dividing the result by 2.
+ * The result is rounded down to the nearest integer using Math.floor().
+ * @param {number} num - The input number to calculate the score from.
+ * @returns {number} The calculated score.
+ */
 function getScore(num) {
 	return Math.floor((num - 10) / 2);
 }

@@ -17,12 +17,21 @@ import DndApi from "./api";
 
 import("./assets/styles/Details.css");
 
+/**
+ * Component to display armor information based on the slug parameter.
+ * @returns {JSX.Element} Armor component with armor information.
+ */
 export function Armor() {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		/**
+		 * Asynchronously fetches information about armor from an external API using the provided slug.
+		 * Sets loading state to true before making the API call and sets it to false after receiving the response.
+		 * @returns {Promise<void>} A promise that resolves once the API call is complete.
+		 */
 		async function getInfo() {
 			setLoading(true);
 			let res = await DndApi.getFromExternal({ type: "armor", slug });

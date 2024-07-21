@@ -5,12 +5,21 @@ import { DataContext } from "./DataContextWrapper";
 
 import DndApi from "./api";
 
+/**
+ * Functional component for the user profile page.
+ * @returns JSX element for the user profile page with user information and options to edit or delete account.
+ */
 export function Profile() {
 	const { user, updateUser } = useContext(DataContext);
 	const currUser = user.user;
 
 	const navigate = useNavigate();
 
+	/**
+	 * Handles the editing of user information based on the form input fields.
+	 * @param {Event} e - The event object triggered by the form submission.
+	 * @returns {Promise<void>} - A promise that resolves once the user information is updated.
+	 */
 	const handleEdit = async (e) => {
 		e.preventDefault();
 
@@ -35,6 +44,14 @@ export function Profile() {
 		}
 	};
 
+	/**
+	 * Asynchronously handles the deletion of a user account.
+	 * Prompts the user for confirmation before deleting the account.
+	 * If confirmed, makes a DELETE request to the DndApi to delete the user.
+	 * Navigates to the "/logout" route after successful deletion.
+	 * Logs any errors that occur during the deletion process.
+	 * @returns None
+	 */
 	const handleDelete = async () => {
 		try {
 			if (

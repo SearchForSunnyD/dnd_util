@@ -12,6 +12,11 @@ import {
 
 import("./assets/styles/Details.css");
 
+/**
+ * Functional component for the Home page of a Dungeons and Dragons Companion app.
+ * Displays a welcome message and some introductory text.
+ * @returns JSX element containing the Home page content.
+ */
 export function Home() {
 	return (
 		<Container>
