@@ -2,7 +2,7 @@ import { Navigate, Route } from "react-router-dom";
 
 import { LoginSignup } from "./LoginSignup";
 import { Logout } from "./Logout";
-import { PrivateRoute } from "./PrivateRoute";
+import { PrivateRoute } from "../PrivateRoute";
 import { Profile } from "./Profile";
 
 /**

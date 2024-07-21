@@ -5,41 +5,44 @@ import {
 	Card,
 	CardBody,
 	CardImg,
+	CardSubtitle,
 	CardText,
 	CardTitle,
 	Col,
 	Container,
+	ListGroup,
+	ListGroupItem,
 	Row,
 	Spinner,
 } from "reactstrap";
-import DndApi from "./api";
+import DndApi from "../api";
 
-import("./assets/styles/Details.css");
+import("../assets/styles/Details.css");
 
 /**
- * Functional component for rendering a basic card based on the provided type.
- * @param {{string}} type - The type of card to render.
- * @returns JSX element representing the basic card.
+ * Component to display information about a specific feat based on the slug parameter.
+ * Uses the DndApi to fetch data and displays it in a Card component.
+ * @returns {JSX.Element} - Feats component JSX
  */
-export function BasicCard({ type }) {
+export function Feats() {
 	const { slug } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
 		/**
-		 * Asynchronously fetches information from an external API using the provided type and slug,
-		 * then sets the data state with the response and updates the loading state accordingly.
+		 * Asynchronously fetches information from an external API using the DndApi utility.
+		 * Sets loading state to true before making the API call and sets it to false after the call is completed.
 		 * @returns None
 		 */
 		async function getInfo() {
 			setLoading(true);
-			let res = await DndApi.getFromExternal({ type, slug });
+			let res = await DndApi.getFromExternal({ type: "feats", slug });
 			setData(res);
 			setLoading(false);
 		}
 		getInfo();
-	}, [slug, type]);
+	}, [slug]);
 
 	return (
 		<Container>
@@ -53,13 +56,27 @@ export function BasicCard({ type }) {
 				</Container>
 			) : (
 				<Row>
-					<CardImg src={`/icons/${type}.png`} />
+					<CardImg src="/icons/feats.png" />
 					<Col>
-						<Card className="info">
+						<Card className="info bisque">
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
-								<CardText>{data.type}</CardText>
+								<CardSubtitle>
+									<strong>{data.prerequisite}</strong>
+								</CardSubtitle>
+								<hr />
 								<CardText>{data.desc}</CardText>
+								<ListGroup
+									numbered
+									flush
+									className="fw-lighter border"
+								>
+									{data.effects_desc.map((effect, index) => (
+										<ListGroupItem key={index}>
+											{effect}
+										</ListGroupItem>
+									))}
+								</ListGroup>
 								<CardText className="mt-3">
 									<strong>Source:</strong>{" "}
 									<Badge pill color="warning">

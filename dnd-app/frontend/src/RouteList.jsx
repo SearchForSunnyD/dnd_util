@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { DetailRoutes } from "./DetailRoutes";
+import { DetailRoutes } from "./DetailRoutes/DetailRoutes";
 import { Home } from "./Home";
 import { SearchResult } from "./SearchResults";
-import { UserRoutes } from "./UserRoutes";
+import { UserRoutes } from "./UserRoutes/UserRoutes";
 
 /**
  * Component that defines the routes for the application.

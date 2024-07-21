@@ -18,10 +18,10 @@ import {
 	Spinner,
 	UncontrolledPopover,
 } from "reactstrap";
-import DndApi from "./api";
+import DndApi from "../api";
 
-import("./assets/styles/Details.css");
-import("./assets/styles/SpellCard.css");
+import("../assets/styles/Details.css");
+import("../assets/styles/SpellCard.css");
 
 /**
  * Component to display information about a spell based on the slug parameter.

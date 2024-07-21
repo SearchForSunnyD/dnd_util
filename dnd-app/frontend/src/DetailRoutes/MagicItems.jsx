@@ -16,10 +16,10 @@ import {
 	Table,
 	UncontrolledPopover,
 } from "reactstrap";
-import DndApi from "./api";
+import DndApi from "../api";
 
-import("./assets/styles/Details.css");
-import("./assets/styles/MagicItems.css");
+import("../assets/styles/Details.css");
+import("../assets/styles/MagicItems.css");
 
 /**
  * Component that displays magic items based on their rarity.

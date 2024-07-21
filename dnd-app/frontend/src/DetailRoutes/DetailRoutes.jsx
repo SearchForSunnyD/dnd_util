@@ -1,13 +1,13 @@
 import { Route } from "react-router-dom";
 
+import { Feats } from "./Feats";
+import { Monster } from "./Monster";
+import { SpellCard } from "./SpellCard";
 import { Armor } from "./Armor";
 import { Backgrounds } from "./Backgrounds";
 import { BasicCard } from "./BasicCard";
-import { Feats } from "./Feats";
 import { MagicItems } from "./MagicItems";
-import { Monster } from "./Monster";
 import { Races } from "./Races";
-import { SpellCard } from "./SpellCard";
 
 /**
  * Component that defines the detail routes for different sections of the application.

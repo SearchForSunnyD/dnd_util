@@ -13,7 +13,7 @@ import {
 	Row,
 } from "reactstrap";
 
-import("./assets/styles/Details.css");
+import("../assets/styles/Details.css");
 
 /**
  * Functional component that displays information about a weapon.

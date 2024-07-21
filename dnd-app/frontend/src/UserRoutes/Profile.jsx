@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { DataContext } from "./DataContextWrapper";
+import { DataContext } from "../DataContextWrapper";
 
-import DndApi from "./api";
+import DndApi from "../api";
 
 /**
  * Functional component for the user profile page.

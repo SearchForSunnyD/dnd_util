@@ -16,10 +16,10 @@ import {
 	Row,
 	Spinner,
 } from "reactstrap";
-import DndApi from "./api";
-import { getScore } from "./tools";
+import DndApi from "../api";
+import { getScore } from "../tools";
 
-import("./assets/styles/Details.css");
+import("../assets/styles/Details.css");
 
 /**
  * Component that fetches and displays information about a monster based on the slug parameter.

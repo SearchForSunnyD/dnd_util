@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { DataContext } from "./DataContextWrapper";
+import { DataContext } from "../DataContextWrapper";
 
 /**
  * Functional component for handling login and signup functionality.

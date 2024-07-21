@@ -13,9 +13,9 @@ import {
 	Row,
 	Spinner,
 } from "reactstrap";
-import DndApi from "./api";
+import DndApi from "../api";
 
-import("./assets/styles/Details.css");
+import("../assets/styles/Details.css");
 
 /**
  * Component to display information about a specific race based on the slug parameter.
