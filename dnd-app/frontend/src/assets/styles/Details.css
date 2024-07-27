@@ -1,4 +1,4 @@
-.row .card-img{
+.row .card-img {
 	height: 200px;
 	width: 200px;
 	border-radius: 50px;
@@ -7,28 +7,47 @@
 		0 2px 2px 0 rgba(0, 0, 0, 0.14),
 		0 3px 1px -2px rgba(0, 0, 0, 0.12),
 		0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  padding-left: 0;
-  padding-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
-.info{
-  min-width: 50vw;
+.info {
+	min-width: 50vw;
 }
 
-.bisque{
-  background-color: bisque !important;
+.bisque {
+	background-color: bisque !important;
 	box-shadow:
 		0 2px 2px 0 rgba(0, 0, 0, 0.14),
 		0 3px 1px -2px rgba(0, 0, 0, 0.12),
 		0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.bisque li{
-background-color: antiquewhite;
+.bisque li.list-group-item {
+	background-color: antiquewhite;
 }
 
-.antique{
-  background-color: antiquewhite;
+.antique {
+	background-color: antiquewhite;
 }
 
+table {
+	width: 100%;
+	text-align: center;
+}
 
+table thead tr {
+	border-top: none;
+}
+
+table tr {
+	border-top: 1px solid;
+}
+
+div.accordion *{
+	background-color: antiquewhite;
+}
+
+div.accordion button:not(.collapsed){
+	background-color: rgba(0, 0, 0, 0.1);
+}
