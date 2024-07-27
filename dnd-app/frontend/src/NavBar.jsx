@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
 	Dropdown,
@@ -7,7 +7,9 @@ import {
 	DropdownToggle,
 	Nav,
 	Navbar,
+	NavItem,
 } from "reactstrap";
+import { DataContext } from "./DataContextWrapper";
 import { SuggestionDropdown } from "./SuggestionDropdown";
 
 import "./assets/styles/NavBar.css";
@@ -19,6 +21,7 @@ import "./assets/styles/NavBar.css";
  */
 export function NavBar() {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const { user } = useContext(DataContext);
 
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 	return (
@@ -31,16 +34,33 @@ export function NavBar() {
 				<Dropdown
 					isOpen={dropdownOpen}
 					toggle={toggle}
-					direction="down"
+					direction="left"
+					inNavbar
+					nav
 				>
 					<DropdownToggle color="none">
 						<img src="/3-horizontal-lines.svg" alt="settings" />
 					</DropdownToggle>
 					<DropdownMenu>
-						<DropdownItem header>Account</DropdownItem>
-						<DropdownItem>
-							<NavLink to="/">Login/Sign-up</NavLink>
+						<DropdownItem className="m-2" header>
+							Account
 						</DropdownItem>
+						{!user.isLoggedIn ? (
+							<NavLink to="/login/signup">
+								<DropdownItem>Login/Sign-up</DropdownItem>
+							</NavLink>
+						) : (
+							<>
+								<NavLink to="/profile">
+									<DropdownItem>
+										{user.user.username}
+									</DropdownItem>
+								</NavLink>
+								<NavLink to="/logout">
+									<DropdownItem>Logout</DropdownItem>
+								</NavLink>
+							</>
+						)}
 					</DropdownMenu>
 				</Dropdown>
 			</Nav>
