@@ -5,6 +5,9 @@ import { DataContext } from "../DataContextWrapper";
 
 import DndApi from "../api";
 
+import "../assets/styles/Details.css";
+import "../assets/styles/Profile.css";
+
 /**
  * Functional component for the user profile page.
  * @returns JSX element for the user profile page with user information and options to edit or delete account.
@@ -68,10 +71,7 @@ export function Profile() {
 	};
 
 	return (
-		<Form
-			className="col bg-dark text-light rounded m-1 p-2"
-			onSubmit={handleEdit}
-		>
+		<Form className="col w-75 mx-auto rounded bisque m-1 p-2" onSubmit={handleEdit}>
 			<FormGroup>
 				<Label for="email">Email</Label>
 				<Input
@@ -108,10 +108,10 @@ export function Profile() {
 					type="text"
 				/>
 			</FormGroup>
-			<Button color="primary" className="m-2">
+			<Button color="secondary" outline className="m-2">
 				Save Changes
 			</Button>
-			<Button color="danger" className="m-2" onClick={handleDelete}>
+			<Button color="danger" className="m-2" outline onClick={handleDelete}>
 				Delete Account
 			</Button>
 		</Form>

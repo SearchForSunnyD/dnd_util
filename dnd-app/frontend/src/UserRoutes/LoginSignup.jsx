@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { DataContext } from "../DataContextWrapper";
 
+import "../assets/styles/Details.css";
+import "../assets/styles/Profile.css";
+
 /**
  * Functional component for handling login and signup functionality.
  * Uses context to access login and signup functions, and state to manage login and signup errors.
@@ -73,9 +76,9 @@ export function LoginSignup() {
 	};
 
 	return (
-		<div className="row p-2 m-2">
+		<div className="row p-2 m-2 w-75 mx-auto">
 			<Form
-				className="col bg-dark text-light rounded m-1 p-2"
+				className="col bisque rounded m-1 p-2"
 				onSubmit={handleLogin}
 			>
 				<FormGroup>
@@ -104,7 +107,7 @@ export function LoginSignup() {
 				)}
 			</Form>
 			<Form
-				className="col bg-dark text-light rounded m-1 p-2"
+				className="col bisque rounded m-1 p-2"
 				onSubmit={handleSignup}
 			>
 				<FormGroup>
