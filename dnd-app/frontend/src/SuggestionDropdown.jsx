@@ -114,6 +114,7 @@ export function SuggestionDropdown() {
 									type="text"
 									placeholder="Type to search..."
 									value={query}
+									id="input-box"
 									onChange={(e) => setQuery(e.target.value)}
 									onKeyUp={(event) => {
 										if (event.key === "Enter") {
@@ -124,7 +125,7 @@ export function SuggestionDropdown() {
 								<Button onClick={handleSubmit}>Submit</Button>
 							</InputGroup>
 						</DropdownToggle>
-						<DropdownMenu className="w-100">
+						<DropdownMenu className="w-100 suggest">
 							{filteredResults.length > 0 ? (
 								filteredResults.map((item) => (
 									<DropdownItem

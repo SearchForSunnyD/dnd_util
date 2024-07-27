@@ -6,9 +6,14 @@
 footer{
   position: fixed;
   bottom: 0;
+  right: 0;
   font-size: smaller;
 }
 
 .details{
   text-align: none;
+}
+
+.grid{
+  display: grid;
 }

@@ -11,7 +11,7 @@ import { UserRoutes } from "./UserRoutes/UserRoutes";
  */
 export function RouteList() {
 	return (
-		<>
+		<main>
 			<Routes>
 				<Route path="/" element={<Home />} />
 				{UserRoutes()}
@@ -19,6 +19,6 @@ export function RouteList() {
 				<Route path="/*" element={<Navigate to="/" />} />
 				<Route path="/search-results" element={<SearchResult />} />
 			</Routes>
-		</>
+		</main>
 	);
 }

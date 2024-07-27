@@ -40,13 +40,13 @@ export function SearchCard({ data }) {
 			<Row>
 				<Col className="flex-grow-0">
 					<CardImg
-						className="search-img"
+						id="search-img"
 						src={`./icons/${data.type}.png`}
 					/>
 				</Col>
 				<Col>
-					<Card className="antique h-100">
-						<CardBody>
+					<Card>
+						<CardBody className="antique">
 							<CardTitle tag="h2">
 								<strong>{info.name}</strong>{" "}
 							</CardTitle>

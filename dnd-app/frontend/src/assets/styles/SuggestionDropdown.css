@@ -2,9 +2,14 @@
   font-weight: bold;
 }
 
-.dropdown-menu{
+.suggest.dropdown-menu{
   max-height: 15vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   width: 50vw;
+  background-color: aliceblue;
+}
+
+#input-box{
+  background-color: aliceblue;
 }

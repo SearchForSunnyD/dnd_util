@@ -70,10 +70,6 @@ export function Home() {
 							and backgrounds.
 						</ListGroupItem>
 						<ListGroupItem>
-							Account management as a precursor for character
-							sheets.
-						</ListGroupItem>
-						<ListGroupItem>
 							Bookmark your favorite pages for easy access.
 						</ListGroupItem>
 					</ListGroup>

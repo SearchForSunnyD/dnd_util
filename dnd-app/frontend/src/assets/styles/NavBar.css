@@ -10,7 +10,7 @@ nav {
 
 nav a {
 	color: #000000;
-	margin: 0px 10px;
+	margin: 0px 10px 0px 0px;
 	text-decoration: none;
 }
 
@@ -28,4 +28,15 @@ nav a:hover {
 	height: 5vh;
 	border-radius: 10px;
 	border: black 1px solid;
+}
+
+div.dropdown-menu{
+	width: 20vw;
+	background-color: aliceblue;
+	box-sizing: content-box;
+	overflow: hidden;
+}
+
+nav button:hover{
+	background-color: #00000042 !important;
 }
