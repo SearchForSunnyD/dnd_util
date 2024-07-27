@@ -1,7 +1,12 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import {
+	Accordion,
+	AccordionBody,
+	AccordionHeader,
+	AccordionItem,
 	Badge,
 	Card,
 	CardBody,
@@ -14,7 +19,6 @@ import {
 	Spinner,
 } from "reactstrap";
 import DndApi from "../api";
-import ReactMarkdown from "react-markdown";
 
 import("../assets/styles/Details.css");
 
@@ -42,6 +46,15 @@ export function Races() {
 		getInfo();
 	}, [slug]);
 
+	const [open, setOpen] = useState("");
+	const toggle = (id) => {
+		if (open === id) {
+			setOpen();
+		} else {
+			setOpen(id);
+		}
+	};
+
 	return (
 		<Container>
 			{loading ? (
@@ -61,14 +74,10 @@ export function Races() {
 							<div>
 								<Row>
 									{data.asi.map((item, index) => (
-										<Row
-											key={index}
-										>
+										<Row key={index}>
 											<div>
 												<CardText>
-													<strong>
-														{item.attributes}{" "}
-													</strong>
+													<strong>{item.attributes} </strong>
 													{item.value}
 												</CardText>
 											</div>
@@ -95,130 +104,42 @@ export function Races() {
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
 								<ReactMarkdown>{data.desc || ""}</ReactMarkdown>
-								{data.asi_desc ? (
-									<ReactMarkdown>
-										{data.asi_desc}
-									</ReactMarkdown>
-								) : (
-									""
-								)}
-								{data.age ? (
-									<ReactMarkdown>{data.age}</ReactMarkdown>
-								) : (
-									""
-								)}
-								{data.alignment ? (
-									<ReactMarkdown>
-										{data.alignment}
-									</ReactMarkdown>
-								) : (
-									""
-								)}
-								{data.size ? (
-									<ReactMarkdown>{data.size}</ReactMarkdown>
-								) : (
-									""
-								)}
-								{data.speed_desc ? (
-									<ReactMarkdown>
-										{data.speed_desc}
-									</ReactMarkdown>
-								) : (
-									""
-								)}
-								<ReactMarkdown>
-									{data.languages || "Languages: None"}
-								</ReactMarkdown>
-								{data.vision ? (
-									<ReactMarkdown>{data.vision}</ReactMarkdown>
-								) : (
-									""
-								)}
-								{data.traits ? (
-									<ReactMarkdown>{data.traits}</ReactMarkdown>
-								) : (
-									""
-								)}
-								{data.subraces
-									? data.subraces.map((race) => {
-											const sRace = race;
-											return (
-												<Card
-													className="p-2 mt-1 antique"
-													key={race.name}
-												>
-													<CardTitle tag="h3">
-														{sRace.name}
-													</CardTitle>
-													<ReactMarkdown>
-														{sRace.desc}
-													</ReactMarkdown>
-													{sRace.asi_desc ? (
-														<ReactMarkdown>
-															{sRace.asi_desc}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.age ? (
-														<ReactMarkdown>
-															{sRace.age}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.alignment ? (
-														<ReactMarkdown>
-															{sRace.age}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.size ? (
-														<ReactMarkdown>
-															{sRace.age}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.speed_desc ? (
-														<ReactMarkdown>
-															{sRace.speed_desc}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.languages ? (
-														<ReactMarkdown>
-															{sRace.languages}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.vision ? (
-														<ReactMarkdown>
-															{sRace.vision}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-													{sRace.traits ? (
-														<ReactMarkdown>
-															{sRace.traits}
-														</ReactMarkdown>
-													) : (
-														""
-													)}
-												</Card>
-											);
-									  })
-									: "B"}
+								{data.asi_desc ? <ReactMarkdown>{data.asi_desc}</ReactMarkdown> : ""}
+								{data.age ? <ReactMarkdown>{data.age}</ReactMarkdown> : ""}
+								{data.alignment ? <ReactMarkdown>{data.alignment}</ReactMarkdown> : ""}
+								{data.size ? <ReactMarkdown>{data.size}</ReactMarkdown> : ""}
+								{data.speed_desc ? <ReactMarkdown>{data.speed_desc}</ReactMarkdown> : ""}
+								<ReactMarkdown>{data.languages || "Languages: None"}</ReactMarkdown>
+								{data.vision ? <ReactMarkdown>{data.vision}</ReactMarkdown> : ""}
+								{data.traits ? <ReactMarkdown>{data.traits}</ReactMarkdown> : ""}
+								<Accordion open={open} toggle={toggle}>
+									{data.subraces
+										? data.subraces.map((race) => {
+												return (
+													<AccordionItem key={race.name}>
+														<AccordionHeader targetId={race.name} tag="h3">
+															{race.name}
+														</AccordionHeader>
+														<AccordionBody accordionId={race.name}>
+															<ReactMarkdown>{race.desc}</ReactMarkdown>
+															{race.asi_desc ? <ReactMarkdown>{race.asi_desc}</ReactMarkdown> : ""}
+															{race.age ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
+															{race.alignment ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
+															{race.size ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
+															{race.speed_desc ? <ReactMarkdown>{race.speed_desc}</ReactMarkdown> : ""}
+															{race.languages ? <ReactMarkdown>{race.languages}</ReactMarkdown> : ""}
+															{race.vision ? <ReactMarkdown>{race.vision}</ReactMarkdown> : ""}
+															{race.traits ? <ReactMarkdown>{race.traits}</ReactMarkdown> : ""}
+														</AccordionBody>
+													</AccordionItem>
+												);
+										  })
+										: ""}
+								</Accordion>
 								<CardText className="mt-3">
 									<strong>Source:</strong>{" "}
 									<Badge pill color="warning">
-										<a href={data.document__url}>
-											{data.document__title}
-										</a>
+										<a href={data.document__url}>{data.document__title}</a>
 									</Badge>
 								</CardText>
 							</CardBody>

@@ -19,6 +19,7 @@ import {
 	Spinner,
 } from "reactstrap";
 import DndApi from "../api";
+import remarkGfm from "remark-gfm";
 
 import("../assets/styles/Details.css");
 
@@ -74,17 +75,21 @@ export function Classes() {
 						<Card className="info bisque">
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
+								<hr />
+								<ReactMarkdown remarkPlugins={[remarkGfm]}>{data.table || ""}</ReactMarkdown>
+								<hr />
 								<ReactMarkdown>{data.desc || ""}</ReactMarkdown>
+								<hr />
 								<Accordion open={open} toggle={toggle}>
 									{data.archetypes
 										? data.archetypes.map((sub) => {
 												return (
-													<AccordionItem className="p-2" key={sub.name}>
+													<AccordionItem key={sub.name}>
 														<AccordionHeader targetId={sub.name} tag="h3">
 															{sub.name}
 														</AccordionHeader>
 														<AccordionBody accordionId={sub.name}>
-															<ReactMarkdown>{sub.desc}</ReactMarkdown>
+															<ReactMarkdown remarkPlugins={[remarkGfm]}>{sub.desc}</ReactMarkdown>
 														</AccordionBody>
 													</AccordionItem>
 												);
