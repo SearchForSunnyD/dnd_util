@@ -7,7 +7,6 @@ import {
 	DropdownToggle,
 	Nav,
 	Navbar,
-	NavItem,
 } from "reactstrap";
 import { DataContext } from "./DataContextWrapper";
 import { SuggestionDropdown } from "./SuggestionDropdown";
@@ -25,7 +24,7 @@ export function NavBar() {
 
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 	return (
-		<Navbar className="navbar fixed-top navbar-light" expand="md">
+		<Navbar expand="md">
 			<NavLink exact to="/" className="navbar-brand">
 				<img src="/logo.png" alt="" />
 			</NavLink>

@@ -1,13 +1,13 @@
-#side-bar{
-display: block;
-  width: 10vw;
+#side-bar {
+	/* display: inline; */
+	width: 10vw;
 	background-color: rgba(0, 0, 0, 0.596);
-    box-sizing: border-box;
+	/* box-sizing: border-box; */
+  margin: 0px;
 }
 
-
-#side-bar *{
-	background-color: rgba(0, 0, 0, 0.0);
-  color: aliceblue;
-  border: none;
+#side-bar * {
+	background-color: rgba(0, 0, 0, 0);
+	color: aliceblue;
+	border: none;
 }

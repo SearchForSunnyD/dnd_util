@@ -104,7 +104,6 @@ router.patch("/:username", ensureCorrectUserOrAdmin, async function (req, res, n
   }
 });
 
-
 /** DELETE /[username]  =>  { deleted: username }
  *
  * Authorization required: admin or same-user-as-:username

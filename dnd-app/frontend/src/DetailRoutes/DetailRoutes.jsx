@@ -8,6 +8,7 @@ import { Backgrounds } from "./Backgrounds";
 import { BasicCard } from "./BasicCard";
 import { MagicItems } from "./MagicItems";
 import { Races } from "./Races";
+import { Classes } from "./Classes";
 
 /**
  * Component that defines the detail routes for different sections of the application.
@@ -22,6 +23,7 @@ export function DetailRoutes() {
 			<Route path="/spells/:slug" element={<SpellCard />} />
 			<Route path="/magicitems/:slug" element={<MagicItems />} />
 			<Route path="/races/:slug" element={<Races />} />
+			<Route path="/classes/:slug" element={<Classes />} />
 			<Route path="/armor/:slug" element={<Armor />} />
 			<Route path="/feats/:slug" element={<Feats />} />
 			<Route path="/backgrounds/:slug" element={<Backgrounds />} />

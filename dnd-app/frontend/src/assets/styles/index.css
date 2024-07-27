@@ -25,14 +25,13 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  min-width: 320px;
+  min-width: 99vw;
   min-height: 100vh;
 
   background-color: #ffcf76;
 
   background-image: url('../images/grunge-paper-background.jpg');
   background-repeat: no-repeat, repeat;
-  background-size: cover;
 }
 
 h1 {

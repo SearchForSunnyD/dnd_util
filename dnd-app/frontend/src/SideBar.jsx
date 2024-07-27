@@ -1,55 +1,85 @@
+import { useState } from "react";
 import {
-	Container,
-	ListGroup,
-	ListGroupItem,
-	ListGroupItemHeading,
-  Nav,
+	Accordion,
+	AccordionItem,
+	AccordionHeader,
+	Nav,
+	Navbar,
+	NavLink,
+	AccordionBody,
 } from "reactstrap";
 
 import "./assets/styles/SideBar.css";
 
 export function SideBar() {
+	const [open, setOpen] = useState("");
+	const toggle = (id) => {
+		if (open === id) {
+			setOpen();
+		} else {
+			setOpen(id);
+		}
+	};
+
 	return (
-		<aside id="side-bar" className="">
-			<Nav>
-				<ListGroup className="">
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Classes</ListGroupItemHeading>
-					</ListGroupItem>
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Monsters</ListGroupItemHeading>
-					</ListGroupItem>
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Spells</ListGroupItemHeading>
-					</ListGroupItem>
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Spell Lists</ListGroupItemHeading>
-						<ListGroup>
-							<ListGroupItem>Bard</ListGroupItem>
-							<ListGroupItem>Cleric</ListGroupItem>
-							<ListGroupItem>Druid</ListGroupItem>
-							<ListGroupItem>Paladin</ListGroupItem>
-							<ListGroupItem>Sorcerer</ListGroupItem>
-							<ListGroupItem>Warlock</ListGroupItem>
-							<ListGroupItem>Wizard</ListGroupItem>
-						</ListGroup>
-					</ListGroupItem>
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Sections</ListGroupItemHeading>
-					</ListGroupItem>
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Feats</ListGroupItemHeading>
-					</ListGroupItem>
-					<ListGroupItem className="side-bar">
-						<ListGroupItemHeading>Equipment</ListGroupItemHeading>
-						<ListGroup>
-							<ListGroupItem>Weapons</ListGroupItem>
-							<ListGroupItem>Armor</ListGroupItem>
-							<ListGroupItem>Magic Items</ListGroupItem>
-						</ListGroup>
-					</ListGroupItem>
-				</ListGroup>
+		<Navbar id="side-bar">
+			<Nav vertical>
+				<Accordion flush open={open} toggle={toggle}>
+					<AccordionItem>
+						<AccordionHeader targetId="1">Classes</AccordionHeader>
+						<AccordionBody accordionId="1">
+							<NavLink>Barbarian</NavLink>
+							<NavLink>Bard</NavLink>
+							<NavLink>Cleric</NavLink>
+							<NavLink>Druid</NavLink>
+							<NavLink>Fighter</NavLink>
+							<NavLink>Monk</NavLink>
+							<NavLink>Paladin</NavLink>
+							<NavLink>Ranger</NavLink>
+							<NavLink>Rogue</NavLink>
+							<NavLink>Sorcerer</NavLink>
+							<NavLink>Warlock</NavLink>
+							<NavLink>Wizard</NavLink>
+						</AccordionBody>
+					</AccordionItem>
+					<AccordionItem>
+						<NavLink>Monsters</NavLink>
+					</AccordionItem>
+					<AccordionItem>
+						<NavLink>Spells</NavLink>
+					</AccordionItem>
+					<AccordionItem>
+						<AccordionHeader targetId="4">
+							Spell Lists
+						</AccordionHeader>
+						<AccordionBody accordionId="4">
+							<NavLink>Bard</NavLink>
+							<NavLink>Cleric</NavLink>
+							<NavLink>Druid</NavLink>
+							<NavLink>Paladin</NavLink>
+							<NavLink>Sorcerer</NavLink>
+							<NavLink>Warlock</NavLink>
+							<NavLink>Wizard</NavLink>
+						</AccordionBody>
+					</AccordionItem>
+					<AccordionItem>
+						<AccordionHeader>Sections</AccordionHeader>
+					</AccordionItem>
+					<AccordionItem>
+						<AccordionHeader>Feats</AccordionHeader>
+					</AccordionItem>
+					<AccordionItem>
+						<AccordionHeader targetId="7">
+							Equipment
+						</AccordionHeader>
+						<AccordionBody accordionId="7">
+							<NavLink>Weapons</NavLink>
+							<NavLink>Armor</NavLink>
+							<NavLink>Magic Items</NavLink>
+						</AccordionBody>
+					</AccordionItem>
+				</Accordion>
 			</Nav>
-		</aside>
+		</Navbar>
 	);
 }

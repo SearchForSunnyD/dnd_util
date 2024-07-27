@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Container } from "reactstrap";
 
 import { DetailRoutes } from "./DetailRoutes/DetailRoutes";
 import { Home } from "./Home";
@@ -12,13 +13,15 @@ import { UserRoutes } from "./UserRoutes/UserRoutes";
 export function RouteList() {
 	return (
 		<main>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				{UserRoutes()}
-				{DetailRoutes()}
-				<Route path="/*" element={<Navigate to="/" />} />
-				<Route path="/search-results" element={<SearchResult />} />
-			</Routes>
+			<Container fluid>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					{UserRoutes()}
+					{DetailRoutes()}
+					<Route path="/*" element={<Navigate to="/" />} />
+					<Route path="/search-results" element={<SearchResult />} />
+				</Routes>
+			</Container>
 		</main>
 	);
 }

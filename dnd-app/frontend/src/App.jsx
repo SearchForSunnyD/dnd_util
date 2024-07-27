@@ -21,6 +21,7 @@ function App() {
 		<DataContextWrapper>
 			<BrowserRouter>
 				<NavBar />
+				{/* <SideBar /> */}
 				<RouteList />
 			</BrowserRouter>
 		</DataContextWrapper>

@@ -13,6 +13,7 @@ import {
 	Spinner,
 } from "reactstrap";
 import DndApi from "../api";
+import ReactMarkdown from "react-markdown";
 
 import("../assets/styles/Details.css");
 
@@ -59,7 +60,7 @@ export function BasicCard({ type }) {
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
 								<CardText>{data.type}</CardText>
-								<CardText>{data.desc}</CardText>
+								<ReactMarkdown>{data.desc}</ReactMarkdown>
 								<CardText className="mt-3">
 									<strong>Source:</strong>{" "}
 									<Badge pill color="warning">

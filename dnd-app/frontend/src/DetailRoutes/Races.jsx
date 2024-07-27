@@ -14,6 +14,7 @@ import {
 	Spinner,
 } from "reactstrap";
 import DndApi from "../api";
+import ReactMarkdown from "react-markdown";
 
 import("../assets/styles/Details.css");
 
@@ -53,24 +54,28 @@ export function Races() {
 				</Container>
 			) : (
 				<Row>
-					<Col>
+					<Col className="col-2">
 						<CardImg src="/icons/races.png" />
-						<Card className="mt-2 antique border-dark p-4">
+						<Card className="mt-2 info bisque p-4">
 							<CardTitle tag="h5">Ability Score</CardTitle>
-							<CardText>
+							<div>
 								<Row>
 									{data.asi.map((item, index) => (
-										<Col key={index}>
+										<Row
+											key={index}
+										>
 											<div>
 												<CardText>
-													{item.attributes}:{" "}
+													<strong>
+														{item.attributes}{" "}
+													</strong>
 													{item.value}
 												</CardText>
 											</div>
-										</Col>
+										</Row>
 									))}
 								</Row>
-							</CardText>
+							</div>
 							<hr />
 							<CardTitle tag="h5">Size</CardTitle>
 							<CardText>{data.size_raw}</CardText>
@@ -89,42 +94,48 @@ export function Races() {
 						<Card className="info bisque">
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
-								<CardText>{data.desc || ""}</CardText>
+								<ReactMarkdown>{data.desc || ""}</ReactMarkdown>
 								{data.asi_desc ? (
-									<CardText>{data.asi_desc}</CardText>
+									<ReactMarkdown>
+										{data.asi_desc}
+									</ReactMarkdown>
 								) : (
 									""
 								)}
 								{data.age ? (
-									<CardText>{data.age}</CardText>
+									<ReactMarkdown>{data.age}</ReactMarkdown>
 								) : (
 									""
 								)}
 								{data.alignment ? (
-									<CardText>{data.alignment}</CardText>
+									<ReactMarkdown>
+										{data.alignment}
+									</ReactMarkdown>
 								) : (
 									""
 								)}
 								{data.size ? (
-									<CardText>{data.size}</CardText>
+									<ReactMarkdown>{data.size}</ReactMarkdown>
 								) : (
 									""
 								)}
 								{data.speed_desc ? (
-									<CardText>{data.speed_desc}</CardText>
+									<ReactMarkdown>
+										{data.speed_desc}
+									</ReactMarkdown>
 								) : (
 									""
 								)}
-								<CardText>
+								<ReactMarkdown>
 									{data.languages || "Languages: None"}
-								</CardText>
+								</ReactMarkdown>
 								{data.vision ? (
-									<CardText>{data.vision}</CardText>
+									<ReactMarkdown>{data.vision}</ReactMarkdown>
 								) : (
 									""
 								)}
 								{data.traits ? (
-									<CardText>{data.traits}</CardText>
+									<ReactMarkdown>{data.traits}</ReactMarkdown>
 								) : (
 									""
 								)}
@@ -139,62 +150,62 @@ export function Races() {
 													<CardTitle tag="h3">
 														{sRace.name}
 													</CardTitle>
-													<CardText>
+													<ReactMarkdown>
 														{sRace.desc}
-													</CardText>
+													</ReactMarkdown>
 													{sRace.asi_desc ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.asi_desc}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.age ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.age}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.alignment ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.age}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.size ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.age}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.speed_desc ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.speed_desc}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.languages ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.languages}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.vision ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.vision}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}
 													{sRace.traits ? (
-														<CardText>
+														<ReactMarkdown>
 															{sRace.traits}
-														</CardText>
+														</ReactMarkdown>
 													) : (
 														""
 													)}

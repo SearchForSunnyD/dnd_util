@@ -19,13 +19,13 @@ class LinkedList {
 		this.length = 0;
 	}
 
- /**
-  * Adds a new node with the given value to the end of the linked list.
-  * If the linked list is empty, the new node becomes both the head and the tail.
-  * Otherwise, the new node is added after the current tail node.
-  * @param {any} val - The value to be added to the linked list as a new node.
-  * @returns None
-  */
+	/**
+	 * Adds a new node with the given value to the end of the linked list.
+	 * If the linked list is empty, the new node becomes both the head and the tail.
+	 * Otherwise, the new node is added after the current tail node.
+	 * @param {any} val - The value to be added to the linked list as a new node.
+	 * @returns None
+	 */
 	push(val) {
 		if (this.head === null) {
 			let new_node = new Node(val);
@@ -50,53 +50,8 @@ function getDescription(data) {
 	return data.desc || data.description || null;
 }
 
-/**
- * Removes markdown syntax from a given markdown text and returns the plain text.
- * @param {string} markdownText - The markdown text to strip markdown syntax from.
- * @returns {string} The plain text without markdown syntax.
- */
-function stripMarkdownFromString(markdownText) {
-	return markdownText
-		.replace(/(?:_|[*#])|\[(.*?)\]\(.*?\)/g, "$1") // Remove _, *, #, and [text](link)
-		.replace(/!\[(.*?)\]\(.*?\)/g, "$1") // Remove ![alt text](link)
-		.replace(/\*\*(.*?)\*\*/g, "$1") // Remove bold **
-		.replace(/\*(.*?)\*/g, "$1") // Remove italics *
-		.replace(/~~(.*?)~~/g, "$1") // Remove strikethrough ~~
-		.replace(/`(.*?)`/g, "$1") // Remove inline code `
-		.replace(/^\s*>\s+/gm, "") // Remove blockquotes
-		.replace(/^#+\s+/gm, "") // Remove headings #
-		.replace(/^\s*-\s+/gm, "") // Remove unordered list
-		.replace(/^\s*\d+\.\s+/gm, "") // Remove ordered list
-		.replace(/\n/g, " "); // Replace new lines with space
-}
 
-/**
- * Recursively removes Markdown formatting from a given object.
- * @param {any} obj - The object to strip Markdown from.
- * @returns {any} The object with Markdown formatting removed.
- */
-function stripMarkdownFromObject(obj) {
-	if (typeof obj === "string") {
-		return stripMarkdownFromString(obj);
-	} else if (Array.isArray(obj)) {
-		return obj.map((item) => stripMarkdownFromObject(item));
-	} else if (obj instanceof Set) {
-		const newSet = new Set();
-		for (let item of obj) {
-			newSet.add(stripMarkdownFromObject(item));
-		}
-		return newSet;
-	} else if (obj !== null && typeof obj === "object") {
-		for (let key in obj) {
-			if (obj.hasOwnProperty(key)) {
-				obj[key] = stripMarkdownFromObject(obj[key]);
-			}
-		}
-		return obj;
-	} else {
-		return obj;
-	}
-}
+
 
 /**
  * Calculates an ability's modifier based on the input ability score.
@@ -109,4 +64,31 @@ function getScore(num) {
 	return Math.floor((num - 10) / 2);
 }
 
-export { LinkedList, Node, getDescription, getScore, stripMarkdownFromObject };
+const parseTableString = (tableString) => {
+	const rows = tableString.trim().split("\n");
+	const headers = rows[1]
+		.split("|")
+		.map((header) => header.trim())
+		.filter((header) => header);
+
+	const info = rows.slice(3).map((row) => {
+		const cells = row
+			.split("|")
+			.map((cell) => cell.trim())
+			.filter((cell) => cell);
+		return headers.reduce((acc, header, i) => {
+			acc[header] = cells[i];
+			return acc;
+		}, {});
+	});
+
+	return { headers, info };
+};
+
+export {
+	LinkedList,
+	Node,
+	getDescription,
+	getScore,
+	parseTableString,
+};
