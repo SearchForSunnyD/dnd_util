@@ -7,10 +7,11 @@ let db;
 
 if (process.env.NODE_ENV === "production") {
   db = new Client({
-    connectionString: getDatabaseUri(),
-    ssl: {
-      rejectUnauthorized: false
-    }
+		connectionString: getDatabaseUri(),
+		ssl: {
+			rejectUnauthorized: false,
+			ca: fs.readFileSync(path.resolve(__dirname, "ca.crt")).toString(),
+		},
   });
 } else {
   db = new Client({

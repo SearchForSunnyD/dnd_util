@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import {
 	Accordion,
@@ -76,9 +76,9 @@ export function Classes() {
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
 								<hr />
-								<ReactMarkdown remarkPlugins={[remarkGfm]}>{data.table || ""}</ReactMarkdown>
+								<Markdown remarkPlugins={[remarkGfm]}>{data.table || ""}</Markdown>
 								<hr />
-								<ReactMarkdown>{data.desc || ""}</ReactMarkdown>
+								<Markdown>{data.desc || ""}</Markdown>
 								<hr />
 								<Accordion open={open} toggle={toggle}>
 									{data.archetypes
@@ -89,7 +89,7 @@ export function Classes() {
 															{sub.name}
 														</AccordionHeader>
 														<AccordionBody accordionId={sub.name}>
-															<ReactMarkdown remarkPlugins={[remarkGfm]}>{sub.desc}</ReactMarkdown>
+															<Markdown remarkPlugins={[remarkGfm]}>{sub.desc}</Markdown>
 														</AccordionBody>
 													</AccordionItem>
 												);
