@@ -1,7 +1,7 @@
 import axios from "axios";
 import { LinkedList, getDescription } from "./tools";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://dnd-util-backend.onrender.com";
 
 /**
  * A class for making API requests to the D&D API.
