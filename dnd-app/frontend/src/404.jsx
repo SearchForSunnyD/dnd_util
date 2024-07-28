@@ -1,6 +1,6 @@
 export function NotFound() {
 	return (
-		<div className="container d-flex flex-column align-items-center justify-content-center">
+		<div className="container d-flex flex-column p-2 align-items-center justify-content-center bisque rounded">
 			<h1 className="display-1 border-bottom">ERROR 404</h1>
 			<p className="h4">
 				<span className="text-danger">Oops!</span> Page not found.

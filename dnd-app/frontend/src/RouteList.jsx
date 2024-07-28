@@ -1,6 +1,7 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Container } from "reactstrap";
 
+import { NotFound } from "./404";
 import { DetailRoutes } from "./DetailRoutes/DetailRoutes";
 import { Home } from "./Home";
 import { SearchResult } from "./SearchResults";
@@ -18,8 +19,8 @@ export function RouteList() {
 					<Route path="/" element={<Home />} />
 					{UserRoutes()}
 					{DetailRoutes()}
-					<Route path="/*" element={<Navigate to="/" />} />
 					<Route path="/search-results" element={<SearchResult />} />
+					<Route path="/*" element={<NotFound />} />
 				</Routes>
 			</Container>
 		</main>

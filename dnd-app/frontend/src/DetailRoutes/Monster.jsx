@@ -18,6 +18,7 @@ import {
 } from "reactstrap";
 import DndApi from "../api";
 import { getScore } from "../tools";
+import ReactMarkdown from "react-markdown";
 
 import("../assets/styles/Details.css");
 
@@ -63,7 +64,7 @@ export function Monster() {
 							<Col>
 								<CardBody>
 									<CardTitle tag="h3">{data.name}</CardTitle>
-									{!data.desc && !data.legendary_desc ? "" : <CardSubtitle>{data.desc || data.legendary_desc}</CardSubtitle>}
+									{!data.desc && !data.legendary_desc ? "" : <ReactMarkdown>{data.desc || data.legendary_desc}</ReactMarkdown>}
 									<hr />
 									<Row>
 										<CardText className="col-3">
