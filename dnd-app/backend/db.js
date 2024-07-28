@@ -2,6 +2,7 @@
 /** Database setup for jobly. */
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
+const ca = require('ca.crt')
 
 let db;
 
@@ -10,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
 		connectionString: getDatabaseUri(),
 		ssl: {
 			rejectUnauthorized: false,
-			ca: fs.readFileSync(path.resolve(__dirname, "ca.crt")).toString(),
+			ca
 		},
   });
 } else {
