@@ -1,21 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-	Badge,
-	Card,
-	CardBody,
-	CardImg,
-	CardSubtitle,
-	CardText,
-	CardTitle,
-	Col,
-	Container,
-	ListGroup,
-	ListGroupItem,
-	Row,
-	Spinner,
-} from "reactstrap";
+import { Badge, Card, CardBody, CardSubtitle, CardText, CardTitle, Container, ListGroup, ListGroupItem } from "reactstrap";
 import DndApi from "../api";
+import { Loading } from "../Loading";
 
 import("../assets/styles/Details.css");
 
@@ -47,48 +34,31 @@ export function Feats() {
 	return (
 		<Container>
 			{loading ? (
-				<Container fluid className="mx-auto">
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-				</Container>
+				<Loading />
 			) : (
-				<Row>
-					<CardImg src="/icons/feats.png" />
-					<Col>
-						<Card className="info bisque">
-							<CardBody>
-								<CardTitle tag="h1">{data.name}</CardTitle>
-								<CardSubtitle>
-									<strong>{data.prerequisite}</strong>
-								</CardSubtitle>
-								<hr />
-								<CardText>{data.desc}</CardText>
-								<ListGroup
-									numbered
-									flush
-									className="fw-lighter border"
-								>
-									{data.effects_desc.map((effect, index) => (
-										<ListGroupItem key={index}>
-											{effect}
-										</ListGroupItem>
-									))}
-								</ListGroup>
-								<CardText className="mt-3">
-									<strong>Source:</strong>{" "}
-									<Badge pill color="warning">
-										<a href={data.document__url}>
-											{data.document__title}
-										</a>
-									</Badge>
-								</CardText>
-							</CardBody>
-						</Card>
-					</Col>
-				</Row>
+				<Container>
+					<Card className="info bisque">
+						<CardBody>
+							<CardTitle tag="h1">{data.name}</CardTitle>
+							<CardSubtitle>
+								<strong>{data.prerequisite}</strong>
+							</CardSubtitle>
+							<hr />
+							<CardText>{data.desc}</CardText>
+							<ListGroup numbered flush className="fw-lighter border">
+								{data.effects_desc.map((effect, index) => (
+									<ListGroupItem key={index}>{effect}</ListGroupItem>
+								))}
+							</ListGroup>
+							<CardText className="mt-3">
+								<strong>Source:</strong>{" "}
+								<Badge pill color="warning">
+									<a href={data.document__url}>{data.document__title}</a>
+								</Badge>
+							</CardText>
+						</CardBody>
+					</Card>
+				</Container>
 			)}
 		</Container>
 	);
