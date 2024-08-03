@@ -3,8 +3,9 @@
  * Represents a node in a linked list.
  */
 class Node {
-	constructor(data) {
+	constructor(data, index) {
 		this.data = data;
+		this.index = index;
 		this.next = null;
 		this.prev = null;
 	}
@@ -17,6 +18,8 @@ class LinkedList {
 	constructor() {
 		this.head = null;
 		this.length = 0;
+		this.results = 0;
+		this.data = []
 	}
 
 	/**
@@ -27,16 +30,19 @@ class LinkedList {
 	 * @returns None
 	 */
 	push(val) {
+		let new_node = new Node(val, this.length);
+
 		if (this.head === null) {
-			let new_node = new Node(val);
 			this.head = new_node;
 			this.tail = new_node;
 		} else {
-			let new_node = new Node(val);
 			new_node.prev = this.tail;
 			this.tail.next = new_node;
 			this.tail = new_node;
 		}
+
+		this.data.push(new_node);
+
 		this.length += 1;
 	}
 }
@@ -49,9 +55,6 @@ class LinkedList {
 function getDescription(data) {
 	return data.desc || data.description || null;
 }
-
-
-
 
 /**
  * Calculates an ability's modifier based on the input ability score.
@@ -85,10 +88,4 @@ const parseTableString = (tableString) => {
 	return { headers, info };
 };
 
-export {
-	LinkedList,
-	Node,
-	getDescription,
-	getScore,
-	parseTableString,
-};
+export { LinkedList, Node, getDescription, getScore, parseTableString };
