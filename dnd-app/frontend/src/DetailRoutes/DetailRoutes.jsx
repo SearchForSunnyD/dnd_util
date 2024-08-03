@@ -9,6 +9,7 @@ import { BasicCard } from "./BasicCard";
 import { MagicItems } from "./MagicItems";
 import { Races } from "./Races";
 import { Classes } from "./Classes";
+import { Weapons } from "./Weapons";
 
 /**
  * Component that defines the detail routes for different sections of the application.
@@ -25,17 +26,12 @@ export function DetailRoutes() {
 			<Route path="/races/:slug" element={<Races />} />
 			<Route path="/classes/:slug" element={<Classes />} />
 			<Route path="/armor/:slug" element={<Armor />} />
+			<Route path="/Weapons/:slug" element={<Weapons />} />
 			<Route path="/feats/:slug" element={<Feats />} />
 			<Route path="/backgrounds/:slug" element={<Backgrounds />} />
 			<Route path="/planes/:slug" element={<BasicCard type="planes" />} />
-			<Route
-				path="/conditions/:slug"
-				element={<BasicCard type="conditions" />}
-			/>
-			<Route
-				path="/sections/:slug"
-				element={<BasicCard type="sections" />}
-			/>
+			<Route path="/conditions/:slug" element={<BasicCard type="conditions" />} />
+			<Route path="/sections/:slug" element={<BasicCard type="sections" />} />
 		</>
 	);
 }
