@@ -87,7 +87,7 @@ export function Monster() {
 								))}
 								<hr />
 								<h5 className="mt-4">Special Abilities</h5>
-								{!data.special_abilities
+								{!data.special_abilities.length > 0
 									? "None"
 									: data.special_abilities.map((ability, index) => (
 											<div key={index}>
@@ -96,7 +96,7 @@ export function Monster() {
 												</CardText>
 											</div>
 									  ))}
-								{!data.legendary_actions ? (
+								{!data.legendary_actions.length > 0 ? (
 									<></>
 								) : (
 									<>

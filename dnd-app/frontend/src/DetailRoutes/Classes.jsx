@@ -42,8 +42,6 @@ export function Classes() {
 		}
 	};
 
-	console.log(data);
-
 	return (
 		<Container>
 			{loading ? (
