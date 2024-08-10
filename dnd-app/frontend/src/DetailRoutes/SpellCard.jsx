@@ -46,6 +46,8 @@ export function SpellCard() {
 		getInfo();
 	}, [slug]);
 
+	console.log(data);
+
 	return (
 		<Container>
 			{loading ? (
@@ -180,14 +182,14 @@ export function SpellCard() {
 							<CardSubtitle>
 								{data.spell_lists.map((b) => {
 									return (
-										<Badge className="text-capitalize" color="info" pill key={b}>
+										<Badge className="text-capitalize mx-1" color="info" pill key={b}>
 											{b}
 										</Badge>
 									);
 								})}
 							</CardSubtitle>
 							<CardText>{data.desc}</CardText>
-							<Row className="fw-light">
+							<Row>
 								<Col>
 									<strong>Range:</strong> {data.range}
 								</Col>
@@ -211,15 +213,19 @@ export function SpellCard() {
 							<hr />
 							<ListGroup>
 								<h5>Additional Info</h5>
-								<ListGroupItem>
-									<strong>Material Components:</strong> {(data.requires_material_components && `${data.material}`) || `None`}
-								</ListGroupItem>
+								{!data.material ? (
+									<></>
+								) : (
+									<ListGroupItem>
+										<strong>Material Components:</strong> {data.material}
+									</ListGroupItem>
+								)}
 								<ListGroupItem>
 									<strong>Classes:</strong> {data.dnd_class}
 								</ListGroupItem>
 								<ListGroupItem>
-									<strong>Cast as ritual: </strong>
-									{data.can_be_cast_as_ritual ? "True" : "False"}
+									<strong>Ritual: </strong>
+									{data.can_be_cast_as_ritual ? "Yes" : "No"}
 								</ListGroupItem>
 							</ListGroup>
 							<CardText className="mt-3">
