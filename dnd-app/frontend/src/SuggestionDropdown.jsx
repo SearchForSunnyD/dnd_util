@@ -101,14 +101,11 @@ export function SuggestionDropdown() {
 	};
 
 	return (
-		<Container fluid>
-			<Row className="justify-content-center">
+		<>
+			<Row className="justify-content-center flex-grow-1">
 				<Col>
-					<Dropdown
-						isOpen={dropdownOpen}
-						toggle={() => setDropdownOpen(!dropdownOpen)}
-					>
-						<DropdownToggle tag="div" className="w-100">
+					<Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen(!dropdownOpen)}>
+						<DropdownToggle tag="div" className="">
 							<InputGroup>
 								<Input
 									type="text"
@@ -128,22 +125,17 @@ export function SuggestionDropdown() {
 						<DropdownMenu className="w-100 suggest">
 							{filteredResults.length > 0 ? (
 								filteredResults.map((item) => (
-									<DropdownItem
-										key={item.slug}
-										onClick={() => handleItemClick(item)}
-									>
+									<DropdownItem key={item.slug} onClick={() => handleItemClick(item)}>
 										{getHighlightedText(item.name, query)}
 									</DropdownItem>
 								))
 							) : (
-								<DropdownItem disabled>
-									Search results: None
-								</DropdownItem>
+								<DropdownItem disabled>Search results: None</DropdownItem>
 							)}
 						</DropdownMenu>
 					</Dropdown>
 				</Col>
 			</Row>
-		</Container>
+		</>
 	);
 }

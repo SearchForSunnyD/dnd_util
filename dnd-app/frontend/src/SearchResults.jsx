@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button, Col, Container, Row, Spinner } from "reactstrap";
+import { Button, Container, Row } from "reactstrap";
+import DndApi from "./api";
+import { Loading } from "./Loading";
 import { SearchCard } from "./SearchCard";
 import { SuggestionDropdown } from "./SuggestionDropdown";
-import DndApi from "./api";
 
 /**
  * Functional component that displays search results based on the query parameter in the URL.
@@ -46,9 +47,7 @@ export function SearchResult() {
 					<h4 className="text-center">No results found</h4>
 				</Container>
 			);
-		return currentNode.data.map((item) => (
-			<SearchCard key={item.slug} data={item} />
-		));
+		return currentNode.data.map((item) => <SearchCard key={item.slug} data={item} />);
 	};
 
 	/**
@@ -79,34 +78,31 @@ export function SearchResult() {
 		<>
 			<Container className="antique rounded border-dark p-3 mb-3">
 				<SuggestionDropdown />
+				{list ? (
+					<Row>
+						<small className="text-muted my-1 fst-italic">
+							Found {list.results || 0} results. Showing results {currentNode.index * 10 + 1} to{" "}
+							{currentNode.index * 10 + 1 + currentNode.data.length}{" "}
+						</small>
+					</Row>
+				) : (
+					""
+				)}
 			</Container>
 			<Container className="bisque rounded border-dark">
 				{loading ? (
-					<Spinner />
+					<Loading />
 				) : (
 					<>
 						<Row>{renderSearchCards()}</Row>
-						<Row className="m-3">
-							<Col md="1">
-								<Button
-									onClick={handlePrevPage}
-									disabled={!currentNode?.prev}
-									className="m-2"
-								>
-									Previous
-								</Button>
-							</Col>
-							<Col md="10"></Col>
-							<Col md="1">
-								<Button
-									onClick={handleNextPage}
-									disabled={!currentNode?.next}
-									className="m-2"
-								>
-									Next
-								</Button>
-							</Col>
-						</Row>
+						<Container fluid className="d-flex justify-content-between">
+							<Button onClick={handlePrevPage} disabled={!currentNode?.prev} className="m-2">
+								Previous
+							</Button>
+							<Button onClick={handleNextPage} disabled={!currentNode?.next} className="m-2">
+								Next
+							</Button>
+						</Container>
 					</>
 				)}
 			</Container>

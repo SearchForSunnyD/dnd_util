@@ -24,19 +24,13 @@ export function NavBar() {
 
 	const toggle = () => setDropdownOpen((prevState) => !prevState);
 	return (
-		<Navbar expand="md">
+		<Navbar fixed="top" expand="sm" className="h-10">
 			<NavLink exact to="/" className="navbar-brand">
-				<img src="/logo.png" alt="" />
+				<img className="flex-shrink-1" src="/logo.png" alt="" />
 			</NavLink>
 			<SuggestionDropdown />
 			<Nav className="mr-auto" fluid navbar>
-				<Dropdown
-					isOpen={dropdownOpen}
-					toggle={toggle}
-					direction="left"
-					inNavbar
-					nav
-				>
+				<Dropdown isOpen={dropdownOpen} toggle={toggle} direction="left" inNavbar nav>
 					<DropdownToggle color="none">
 						<img src="/3-horizontal-lines.svg" alt="settings" />
 					</DropdownToggle>
@@ -51,9 +45,7 @@ export function NavBar() {
 						) : (
 							<>
 								<NavLink to="/profile">
-									<DropdownItem>
-										{user.user.username}
-									</DropdownItem>
+									<DropdownItem>{user.user.username}</DropdownItem>
 								</NavLink>
 								<NavLink to="/logout">
 									<DropdownItem>Logout</DropdownItem>

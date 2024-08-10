@@ -10,15 +10,14 @@ import {
 	Badge,
 	Card,
 	CardBody,
-	CardImg,
 	CardText,
 	CardTitle,
 	Col,
 	Container,
 	Row,
-	Spinner,
 } from "reactstrap";
 import DndApi from "../api";
+import { Loading } from "../Loading";
 
 import("../assets/styles/Details.css");
 
@@ -58,51 +57,39 @@ export function Races() {
 	return (
 		<Container>
 			{loading ? (
-				<Container fluid className="mx-auto">
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-				</Container>
+				<Loading />
 			) : (
-				<Row>
-					<Col className="col-2">
-						<CardImg src="/icons/races.png" />
-						<Card className="mt-2 info bisque p-4">
-							<CardTitle tag="h5">Ability Score</CardTitle>
-							<div>
-								<Row>
-									{data.asi.map((item, index) => (
-										<Row key={index}>
-											<div>
-												<CardText>
-													<strong>{item.attributes} </strong>
-													{item.value}
-												</CardText>
-											</div>
-										</Row>
-									))}
-								</Row>
-							</div>
-							<hr />
-							<CardTitle tag="h5">Size</CardTitle>
-							<CardText>{data.size_raw}</CardText>
-							<hr />
-							<CardTitle tag="h5">Speed</CardTitle>
-							<CardText className="text-capitalize">
-								{Object.keys(data.speed).map((speed, index) => (
-									<p key={index}>
-										{speed} {data.speed[speed]} ft.
-									</p>
-								))}
-							</CardText>
-						</Card>
-					</Col>
-					<Col>
+					<Container>
 						<Card className="info bisque">
 							<CardBody>
 								<CardTitle tag="h1">{data.name}</CardTitle>
+								<hr />
+								<CardTitle tag="h5">Ability Scores:</CardTitle>
+								<Row>
+									{data.asi.map((item, index) => (
+										<Col key={index}>
+											<p>
+												<strong>{item.attributes} </strong>+{item.value}
+											</p>
+										</Col>
+									))}
+								</Row>
+								<hr />
+								<Row className="text-capitalize">
+									<Col>
+										<strong>Size: </strong>
+										{data.size_raw}
+									</Col>
+									<Col>
+										<strong>Speed: </strong>
+										{Object.keys(data.speed).map((speed, index) => (
+											<span key={index}>
+												{speed} {data.speed[speed]} ft.
+											</span>
+										))}
+									</Col>
+								</Row>
+								<hr />
 								<ReactMarkdown>{data.desc || ""}</ReactMarkdown>
 								{data.asi_desc ? <ReactMarkdown>{data.asi_desc}</ReactMarkdown> : ""}
 								{data.age ? <ReactMarkdown>{data.age}</ReactMarkdown> : ""}
@@ -112,30 +99,32 @@ export function Races() {
 								<ReactMarkdown>{data.languages || "Languages: None"}</ReactMarkdown>
 								{data.vision ? <ReactMarkdown>{data.vision}</ReactMarkdown> : ""}
 								{data.traits ? <ReactMarkdown>{data.traits}</ReactMarkdown> : ""}
-								<Accordion open={open} toggle={toggle}>
-									{data.subraces
-										? data.subraces.map((race) => {
-												return (
-													<AccordionItem key={race.name}>
-														<AccordionHeader targetId={race.name} tag="h3">
-															{race.name}
-														</AccordionHeader>
-														<AccordionBody accordionId={race.name}>
-															<ReactMarkdown>{race.desc}</ReactMarkdown>
-															{race.asi_desc ? <ReactMarkdown>{race.asi_desc}</ReactMarkdown> : ""}
-															{race.age ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
-															{race.alignment ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
-															{race.size ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
-															{race.speed_desc ? <ReactMarkdown>{race.speed_desc}</ReactMarkdown> : ""}
-															{race.languages ? <ReactMarkdown>{race.languages}</ReactMarkdown> : ""}
-															{race.vision ? <ReactMarkdown>{race.vision}</ReactMarkdown> : ""}
-															{race.traits ? <ReactMarkdown>{race.traits}</ReactMarkdown> : ""}
-														</AccordionBody>
-													</AccordionItem>
-												);
-										  })
-										: ""}
-								</Accordion>
+								{!data.subraces ? (
+									<></>
+								) : (
+									<Accordion className="m-1" open={open} toggle={toggle}>
+										{data.subraces.map((race) => {
+											return (
+												<AccordionItem key={race.name}>
+													<AccordionHeader targetId={race.name} tag="h3">
+														{race.name}
+													</AccordionHeader>
+													<AccordionBody accordionId={race.name}>
+														<ReactMarkdown>{race.desc}</ReactMarkdown>
+														{race.asi_desc ? <ReactMarkdown>{race.asi_desc}</ReactMarkdown> : ""}
+														{race.age ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
+														{race.alignment ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
+														{race.size ? <ReactMarkdown>{race.age}</ReactMarkdown> : ""}
+														{race.speed_desc ? <ReactMarkdown>{race.speed_desc}</ReactMarkdown> : ""}
+														{race.languages ? <ReactMarkdown>{race.languages}</ReactMarkdown> : ""}
+														{race.vision ? <ReactMarkdown>{race.vision}</ReactMarkdown> : ""}
+														{race.traits ? <ReactMarkdown>{race.traits}</ReactMarkdown> : ""}
+													</AccordionBody>
+												</AccordionItem>
+											);
+										})}
+									</Accordion>
+								)}
 								<CardText className="mt-3">
 									<strong>Source:</strong>{" "}
 									<Badge pill color="warning">
@@ -144,8 +133,7 @@ export function Races() {
 								</CardText>
 							</CardBody>
 						</Card>
-					</Col>
-				</Row>
+					</Container>
 			)}
 		</Container>
 	);

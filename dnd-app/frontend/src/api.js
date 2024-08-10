@@ -1,7 +1,7 @@
 import axios from "axios";
 import { LinkedList, getDescription } from "./tools";
 
-const BASE_URL = "https://dnd-util-backend.onrender.com";
+const BASE_URL = "http://localhost:3001";
 
 /**
  * A class for making API requests to the D&D API.
@@ -149,6 +149,8 @@ class DndApi {
 			const chunk = res.results.slice(i, i + chunkSize);
 			list.push(chunk);
 		}
+
+		list.results = res.results.length;
 
 		return list;
 	}

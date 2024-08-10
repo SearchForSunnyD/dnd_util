@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import { Container } from "reactstrap";
 
 import { NotFound } from "./404";
 import { DetailRoutes } from "./DetailRoutes/DetailRoutes";
 import { Home } from "./Home";
 import { SearchResult } from "./SearchResults";
+import { Test } from "./Test";
 import { UserRoutes } from "./UserRoutes/UserRoutes";
 
 /**
@@ -14,15 +14,14 @@ import { UserRoutes } from "./UserRoutes/UserRoutes";
 export function RouteList() {
 	return (
 		<main>
-			<Container fluid>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					{UserRoutes()}
-					{DetailRoutes()}
-					<Route path="/search-results" element={<SearchResult />} />
-					<Route path="/*" element={<NotFound />} />
-				</Routes>
-			</Container>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				{UserRoutes()}
+				{DetailRoutes()}
+				<Route path="/search-results" element={<SearchResult />} />
+				<Route path="/test" element={<Test />} />
+				<Route path="/*" element={<NotFound />} />
+			</Routes>
 		</main>
 	);
 }
