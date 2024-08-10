@@ -23,7 +23,7 @@ export function Home() {
 			<Card>
 				<CardBody className="bisque">
 					<CardTitle tag="h2" className="text-center">
-						Welcome to a Dungeons and Dragons Companion
+						Welcome to Arcane Atlas
 					</CardTitle>
 					<br />
 					<CardSubtitle>
