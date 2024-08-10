@@ -99,7 +99,6 @@ async function buildSlugDb() {
 		"armor",
 		"sections",
 		"spells",
-		"spelllist",
 	];
 
 	await Promise.all(calls.map((prefix) => fetchAndInsertData(prefix, url)));
