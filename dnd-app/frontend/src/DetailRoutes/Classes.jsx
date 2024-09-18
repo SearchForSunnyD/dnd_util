@@ -2,24 +2,10 @@
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import { useParams } from "react-router-dom";
-import {
-	Accordion,
-	AccordionBody,
-	AccordionHeader,
-	AccordionItem,
-	Badge,
-	Card,
-	CardBody,
-	CardImg,
-	CardText,
-	CardTitle,
-	Col,
-	Container,
-	Row,
-	Spinner,
-} from "reactstrap";
-import DndApi from "../api";
+import { Accordion, AccordionBody, AccordionHeader, AccordionItem, Badge, Card, CardBody, CardText, CardTitle, Container } from "reactstrap";
 import remarkGfm from "remark-gfm";
+import DndApi from "../api";
+import { Loading } from "../Loading";
 
 import("../assets/styles/Details.css");
 
@@ -56,56 +42,45 @@ export function Classes() {
 		}
 	};
 
-	console.log(data);
-
 	return (
 		<Container>
 			{loading ? (
-				<Container fluid className="mx-auto">
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-				</Container>
+				<Loading />
 			) : (
-				<Row>
-					<CardImg src="/icons/classes.png" />
-					<Col>
-						<Card className="info bisque">
-							<CardBody>
-								<CardTitle tag="h1">{data.name}</CardTitle>
-								<hr />
-								<Markdown remarkPlugins={[remarkGfm]}>{data.table || ""}</Markdown>
-								<hr />
-								<Markdown>{data.desc || ""}</Markdown>
-								<hr />
-								<Accordion open={open} toggle={toggle}>
-									{data.archetypes
-										? data.archetypes.map((sub) => {
-												return (
-													<AccordionItem key={sub.name}>
-														<AccordionHeader targetId={sub.name} tag="h3">
-															{sub.name}
-														</AccordionHeader>
-														<AccordionBody accordionId={sub.name}>
-															<Markdown remarkPlugins={[remarkGfm]}>{sub.desc}</Markdown>
-														</AccordionBody>
-													</AccordionItem>
-												);
-										  })
-										: ""}
-								</Accordion>
-								<CardText className="mt-3">
-									<strong>Source:</strong>{" "}
-									<Badge pill color="warning">
-										<a href={data.document__url}>{data.document__title}</a>
-									</Badge>
-								</CardText>
-							</CardBody>
-						</Card>
-					</Col>
-				</Row>
+				<Container>
+					<Card className="info bisque">
+						<CardBody>
+							<CardTitle tag="h1">{data.name}</CardTitle>
+							<hr />
+							<Markdown remarkPlugins={[remarkGfm]}>{data.table || ""}</Markdown>
+							<hr />
+							<Markdown>{data.desc || ""}</Markdown>
+							<hr />
+							<Accordion open={open} toggle={toggle}>
+								{data.archetypes
+									? data.archetypes.map((sub) => {
+											return (
+												<AccordionItem key={sub.name}>
+													<AccordionHeader targetId={sub.name} tag="h3">
+														{sub.name}
+													</AccordionHeader>
+													<AccordionBody accordionId={sub.name}>
+														<Markdown remarkPlugins={[remarkGfm]}>{sub.desc}</Markdown>
+													</AccordionBody>
+												</AccordionItem>
+											);
+									  })
+									: ""}
+							</Accordion>
+							<CardText className="mt-3">
+								<strong>Source:</strong>{" "}
+								<Badge pill color="warning">
+									<a href={data.document__url}>{data.document__title}</a>
+								</Badge>
+							</CardText>
+						</CardBody>
+					</Card>
+				</Container>
 			)}
 		</Container>
 	);

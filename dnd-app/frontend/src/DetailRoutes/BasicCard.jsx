@@ -1,19 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import {
-	Badge,
-	Card,
-	CardBody,
-	CardImg,
-	CardText,
-	CardTitle,
-	Col,
-	Container,
-	Row,
-	Spinner,
-} from "reactstrap";
-import DndApi from "../api";
 import ReactMarkdown from "react-markdown";
+import { useParams } from "react-router-dom";
+import { Badge, Card, CardBody, CardText, CardTitle, Container } from "reactstrap";
+import DndApi from "../api";
+import { Loading } from "../Loading";
 
 import("../assets/styles/Details.css");
 
@@ -45,34 +35,23 @@ export function BasicCard({ type }) {
 	return (
 		<Container>
 			{loading ? (
-				<Container fluid className="mx-auto">
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-					<Spinner type="grow" />
-				</Container>
+				<Loading />
 			) : (
-				<Row>
-					<CardImg src={`/icons/${type}.png`} />
-					<Col>
-						<Card className="info">
-							<CardBody>
-								<CardTitle tag="h1">{data.name}</CardTitle>
-								<CardText>{data.type}</CardText>
-								<ReactMarkdown>{data.desc}</ReactMarkdown>
-								<CardText className="mt-3">
-									<strong>Source:</strong>{" "}
-									<Badge pill color="warning">
-										<a href={data.document__url}>
-											{data.document__title}
-										</a>
-									</Badge>
-								</CardText>
-							</CardBody>
-						</Card>
-					</Col>
-				</Row>
+				<Container>
+					<Card className="info">
+						<CardBody>
+							<CardTitle tag="h1">{data.name}</CardTitle>
+							<CardText>{data.type}</CardText>
+							<ReactMarkdown>{data.desc}</ReactMarkdown>
+							<CardText className="mt-3">
+								<strong>Source:</strong>{" "}
+								<Badge pill color="warning">
+									<a href={data.document__url}>{data.document__title}</a>
+								</Badge>
+							</CardText>
+						</CardBody>
+					</Card>
+				</Container>
 			)}
 		</Container>
 	);

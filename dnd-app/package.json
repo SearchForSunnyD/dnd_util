@@ -4,9 +4,7 @@
 	"description": "",
 	"main": "",
 	"scripts": {
-		"start": "npm-run-all --parallel backend frontend",
-		"backend": "nodemon ./backend/server.js",
-		"frontend": "cd ./frontend && npm run dev"
+		"start": "cmd /c start-app.bat"
 	},
 	"jest": {
 		"testPathIgnorePatterns": [

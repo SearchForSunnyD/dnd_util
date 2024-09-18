@@ -1,18 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-	Badge,
-	Card,
-	CardBody,
-	CardImg,
-	CardTitle,
-	Col,
-	Container,
-	Row,
-} from "reactstrap";
+import { Badge, Card, CardBody, CardTitle, Container } from "reactstrap";
 import DndApi from "./api";
 
 import("./assets/styles/Details.css");
-import("./assets/styles/SearchCard.css");
 
 /**
  * Functional component for rendering a search card with data fetched from an external API.
@@ -36,34 +26,21 @@ export function SearchCard({ data }) {
 	}, [data]);
 
 	return (
-		<Container data={data.slug} className="p-4">
-			<Row>
-				<Col className="flex-grow-0">
-					<CardImg
-						id="search-img"
-						src={`./icons/${data.type}.png`}
-					/>
-				</Col>
-				<Col>
-					<Card>
-						<CardBody className="antique">
-							<CardTitle tag="h2">
-								<strong>{info.name}</strong>{" "}
-							</CardTitle>
-							<Badge pill>Tag: {data.type}</Badge>
-							<Badge pill color="warning">
-								<a href={info.document__url}>
-									{info.document__title}
-								</a>
-							</Badge>
-							<a
-								href={`/${data.type}/${data.slug}`}
-								className="stretched-link"
-							></a>
-						</CardBody>
-					</Card>
-				</Col>
-			</Row>
+		<Container data={data.slug} className="p-3">
+			<Card>
+				<CardBody className="antique border rounded">
+					<CardTitle tag="h2">
+						<strong>{info.name}</strong>{" "}
+					</CardTitle>
+					<Badge pill className="mx-1">
+						Tag: {data.type}
+					</Badge>
+					<Badge pill color="warning">
+						<a href={info.document__url}>{info.document__title}</a>
+					</Badge>
+					<a href={`/${data.type}/${data.slug}`} className="stretched-link"></a>
+				</CardBody>
+			</Card>
 		</Container>
 	);
 }
